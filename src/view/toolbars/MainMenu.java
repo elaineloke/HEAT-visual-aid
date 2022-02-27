@@ -17,9 +17,15 @@ package view.toolbars;
 
 import managers.ActionManager;
 
+import java.awt.Font;
+
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.MenuElement;
+
+import java.awt.Component;
 
 // import com.apple.eawt.Application;
 
@@ -29,7 +35,7 @@ import javax.swing.JMenuItem;
 /**
  * The menus used within HEAT
  */
-public class MainMenu {
+public class MainMenu{
   private JMenuBar jMenuBar = new JMenuBar();
 
   /* Program menu items */
@@ -73,7 +79,7 @@ public class MainMenu {
       e.printStackTrace();
     }
   }
-
+  
   /**
    * Initialises the menus GUI compenetes
    *
@@ -167,6 +173,7 @@ public class MainMenu {
     // app.setAboutHandler(null);
     // app.setPreferencesHandler(null);
     // app.setQuitHandler(null);
+    
   }
 
   /**
@@ -211,5 +218,24 @@ public class MainMenu {
     jMenuItemCompile.setEnabled(enabled);
   }
   
-
+  /**
+   * Update menu font size
+   * 
+   * @param ptSize desired font size
+   */
+  public void setFontSize(int ptSize) {
+	  MenuElement[] menuEles= jMenuBar.getSubElements();
+	  for(MenuElement ele: menuEles) {
+		  Component component = ele.getComponent();
+		  component.setFont(new Font(Font.MONOSPACED, Font.PLAIN, ptSize));
+		  
+		  if(component instanceof JMenu) {
+			  JMenu menuComponent = (JMenu) component;
+			  Component[] itemEles= menuComponent.getMenuComponents();
+			  for(Component itemEle: itemEles) {
+				  itemEle.setFont(new Font(Font.MONOSPACED, Font.PLAIN, ptSize));
+			  }
+		  }
+	  }
+  }
 }
