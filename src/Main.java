@@ -22,6 +22,13 @@ import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.SimpleFormatter;
+
+import javax.swing.UIManager;
+
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+
 import java.util.logging.Level;
 import java.io.File;
 
@@ -35,6 +42,8 @@ public class Main {
    * @param args
    */
 public static void main(String[] args) {
+
+	
     Logger log = Logger.getLogger("heat");
     try {
         log.setUseParentHandlers(false);  // turn off logging on stdout console
@@ -52,7 +61,14 @@ public static void main(String[] args) {
     WindowManager wm = WindowManager.getInstance();
 
     sm.loadSettings();
-    WindowManager.setLookAndFeel();
+    //WindowManager.setLookAndFeel();
+    
+	try {
+		UIManager.setLookAndFeel( new FlatDarculaLaf() );
+    } catch( Exception ex ) {
+        System.err.println( "Failed to initialize Laf" );
+    }
+	
     wm.createGUI();
 
     if (sm.isNewSettingsFile())
