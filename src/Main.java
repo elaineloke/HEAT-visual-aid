@@ -35,6 +35,7 @@ public class Main {
    * @param args
    */
 public static void main(String[] args) {
+	new Zoom();
     Logger log = Logger.getLogger("heat");
     try {
         log.setUseParentHandlers(false);  // turn off logging on stdout console
