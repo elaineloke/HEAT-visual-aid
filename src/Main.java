@@ -42,6 +42,13 @@ public class Main {
    * @param args
    */
 public static void main(String[] args) {
+	
+	try {
+		UIManager.setLookAndFeel( new FlatDarculaLaf() );
+    } catch( Exception ex ) {
+        System.err.println( "Failed to initialize Laf" );
+    }
+	
 
 	
     Logger log = Logger.getLogger("heat");
@@ -61,14 +68,6 @@ public static void main(String[] args) {
     WindowManager wm = WindowManager.getInstance();
 
     sm.loadSettings();
-    //WindowManager.setLookAndFeel();
-    
-	try {
-		UIManager.setLookAndFeel( new FlatDarculaLaf() );
-    } catch( Exception ex ) {
-        System.err.println( "Failed to initialize Laf" );
-    }
-	
     wm.createGUI();
 
     if (sm.isNewSettingsFile())

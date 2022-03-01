@@ -22,7 +22,7 @@ import utils.Resources;
 import utils.Settings;
 import utils.InterpreterParser;
 
-import view.dialogs.SystemDialogs;
+//import view.dialogs.SystemDialogs;
 import view.windows.*;
 
 import java.awt.event.ActionEvent;
@@ -47,6 +47,7 @@ import com.formdev.flatlaf.intellijthemes.FlatGradiantoNatureGreenIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHiberbeeDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatVuesionIJTheme;
+//import com.sun.tools.javac.Main;
 
 
 
@@ -158,25 +159,25 @@ public class ActionManager {
   
 //theme selector
  private SelectDarkTheme selectDarkTheme = new SelectDarkTheme("Dark Theme",
-	      Resources.getIcon("help16"), "Dark theme", new Integer(KeyEvent.VK_D),
+	      Resources.getIcon("changetheme"), "Dark theme", new Integer(KeyEvent.VK_D),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_D, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectDarkOrangeTheme selectDarkOrangeTheme = new SelectDarkOrangeTheme("Dark Orange Theme",
-	      Resources.getIcon("help16"), "Dark orange theme", new Integer(KeyEvent.VK_O),
+	      Resources.getIcon("changetheme"), "Dark orange theme", new Integer(KeyEvent.VK_O),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_O, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectLightTheme selectLightTheme = new SelectLightTheme("Light Theme",
-	      Resources.getIcon("help16"), "Light theme", new Integer(KeyEvent.VK_L),
+	      Resources.getIcon("changetheme"), "Light theme", new Integer(KeyEvent.VK_L),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_L, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
- private SelectHiberbeeTheme selectHiberbeeTheme = new SelectHiberbeeTheme("Hiberbee Dark Theme",
-	      Resources.getIcon("help16"), "Hiberbee dark theme", new Integer(KeyEvent.VK_H),
+ private SelectHiberbeeTheme selectHiberbeeTheme = new SelectHiberbeeTheme("Deep Dark Theme",
+	      Resources.getIcon("changetheme"), "Hiberbee dark theme", new Integer(KeyEvent.VK_H),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_H, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectGreenTheme selectGreenTheme = new SelectGreenTheme("Nature Green Theme",
-	      Resources.getIcon("help16"), "Nature green theme", new Integer(KeyEvent.VK_G),
+	      Resources.getIcon("changetheme"), "Nature green theme", new Integer(KeyEvent.VK_G),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_G, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
- private SelectVuesionTheme selectVuesionTheme = new SelectVuesionTheme("Vuesion Theme",
-	      Resources.getIcon("help16"), "Vuesion theme", new Integer(KeyEvent.VK_B),
+ private SelectVuesionTheme selectVuesionTheme = new SelectVuesionTheme("Hyper Dark Theme",
+	      Resources.getIcon("changetheme"), "Vuesion theme", new Integer(KeyEvent.VK_B),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_B, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
- private SelectContrastTheme selectContrastTheme = new SelectContrastTheme("High contrast Theme",
-	      Resources.getIcon("help16"), "High contrast theme", new Integer(KeyEvent.VK_H),
+ private SelectContrastTheme selectContrastTheme = new SelectContrastTheme("High Contrast Theme",
+	      Resources.getIcon("changetheme"), "High contrast theme", new Integer(KeyEvent.VK_H),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_H, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 
   
@@ -1362,7 +1363,9 @@ public class ActionManager {
     
     /*select high contrast theme*/
     public class SelectContrastTheme extends AbstractAction {
-    	public SelectContrastTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    
+
+		public SelectContrastTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
     		super(text,icon);
     		 putValue(SHORT_DESCRIPTION, desc);
              putValue(MNEMONIC_KEY, mnemonic);

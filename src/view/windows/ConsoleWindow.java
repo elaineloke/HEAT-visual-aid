@@ -98,10 +98,8 @@ public class ConsoleWindow {
     jspMain.setMinimumSize(new Dimension(0, 0));
     jspMain.setPreferredSize(new Dimension(100,150));
     jspMain.setAutoscrolls(true);
-    StyleConstants.setForeground(normalText, Color.BLACK);
     StyleConstants.setForeground(errorText,Color.RED);
     StyleConstants.setForeground(infoText,Color.BLUE);
-    StyleConstants.setForeground(inputText,Color.DARK_GRAY);
     StyleConstants.setForeground(promptText,new Color(0,150,0));
     StyleConstants.setBold(inputText,true);
     jtaInterpreterOutput.setEditable(true);
