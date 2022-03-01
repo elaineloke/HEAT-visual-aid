@@ -269,9 +269,9 @@ public class OptionsWindow {
   }
   
   /**
-   * Returns the desired font size for output window
+   * Returns the desired font size for menu
    *
-   * @return the output window font size
+   * @return the menu font size
    */
   public String getMenuFontSize() {
     return (String) jcbMenuFontSize.getSelectedItem();
