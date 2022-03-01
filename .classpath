@@ -6,8 +6,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="X:/home/SoftEngProjWeek/heat/flatlaf/flatlaf-2.0.2.jar"/>
-	<classpathentry kind="lib" path="X:/home/SoftEngProjWeek/heat/flatlaf/flatlaf-intellij-themes-2.0.2.jar"/>
-	<classpathentry kind="lib" path="X:/home/SoftEngProjWeek/G4/jl1.0.jar"/>
+	<classpathentry kind="lib" path="X:/home/SoftwareEngineering/G4/jl1.0.jar"/>
+	<classpathentry kind="lib" path="X:/home/SoftwareEngineering/G4/flatlaf/flatlaf-2.0.2.jar"/>
+	<classpathentry kind="lib" path="X:/home/SoftwareEngineering/G4/flatlaf/flatlaf-intellij-themes-2.0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

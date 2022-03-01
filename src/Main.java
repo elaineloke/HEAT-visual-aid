@@ -23,8 +23,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.SimpleFormatter;
 
-import javax.swing.UIManager;
-
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
@@ -41,9 +39,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
 import java.util.logging.Level;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 /**
  * Main HEAT class
@@ -54,6 +53,7 @@ public class Main {
    * Used to run HEAT
    * @param args
    */
+	
 public static void main(String[] args) {
 	
 	try {
@@ -94,6 +94,7 @@ public static void main(String[] args) {
       im.startProcess(false);
     }
     
+
     if (args.length > 0) {
     	wm.openFile(new java.io.File(args[0]));
         wm.showAll();
@@ -107,6 +108,86 @@ public static void main(String[] args) {
         wm.getConsoleWindow().getFocus();
     }
     wm.setVisible();
+
+    
+    //try adding method here ;)
+    final JFrame option = new JFrame();
+    JButton yes = new JButton();
+    JButton no = new JButton();
+    JTextArea text = new JTextArea(5,40);
+    
+    final JFrame info = new JFrame();
+    JTextArea commands = new JTextArea(0,0);
+    
+    JRootPane rootPane = option.getRootPane(); 
+
+    commands.setText("Ctrl + Q - quit \nCtrl + O - open a file \n"
+    		+ "Escape - closes window \nCtrl + P - print editor content or interpreter console \n"
+    		+ "Ctrl + D - Opens HEAT options \nCtrl + Z - undo \nCtrl + Y - redo \n"
+    		+ "Ctrl + F - find and replace in page \nCtrl + X - cut \nCtrl + C - copy \n"
+    		+ "Ctrl + V - paste \nCtrl + L - load compile programme, load program into interpreter and compile it \n"
+    		+ "Ctrl + I - interrupt interpreter \nCtrl + T - check properties \n"
+    		+ "Ctrl + H - display help \nFor the console window: \nE - sends evaluation to interpreter \n"
+    		+ "S - save path and continue");
+    commands.setEditable(false);
+    info.add(commands);
+    info.pack();
+    
+    text.setText("Do you require keyboard shortcuts to be read aloud? If yes press enter");
+    text.setLineWrap(true);
+    text.setEditable(false);
+    yes.setText("Yes");
+    no.setText("No");
+    option.setLayout(new BorderLayout());
+    option.add(text, BorderLayout.NORTH);
+    option.add(yes, BorderLayout.WEST);
+    option.add(no, BorderLayout.EAST);
+    option.pack();
+    option.setVisible(true);
+    
+    try {
+    	String x = new java.io.File("src").getAbsolutePath();
+    	FileInputStream mp3_file = new FileInputStream(x + "\\audio" + "\\openingVoice.mp3");
+    	Player mp3 = new Player(mp3_file);
+    	System.out.println(x);
+    	mp3.play();}
+    catch(Exception e) {
+    	System.out.println(e);
+    }
+    
+    rootPane.setDefaultButton(yes);
+    
+    yes.addActionListener(new ActionListener() {
+    	
+    	@Override
+        public void actionPerformed(ActionEvent e) {
+            option.dispose();
+            try {
+            	String x = new java.io.File("src").getAbsolutePath();
+            	FileInputStream mp3_file = new FileInputStream(x + "\\audio" + "\\commandsv.mp3");
+            	Player mp3 = new Player(mp3_file);
+            	System.out.println(x);
+            	mp3.play();
+            	Thread.currentThread();
+				Thread.sleep(10000);
+            	info.dispose();}
+            catch(Exception e2) {
+            	System.out.println(e2);
+            }           
+        }
+    });
+    
+    no.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            info.setVisible(true);
+        	option.dispose();
+        }
+    });
+    
+
+    //end of added method
+    
    }
 }
   
