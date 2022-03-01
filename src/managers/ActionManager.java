@@ -152,28 +152,28 @@ public class ActionManager {
 
   // help actions
   private ShowHelpAction showHelpAction = new ShowHelpAction("Help",
-      Resources.getIcon("help16"), "Display help", new Integer(KeyEvent.VK_L),
-      KeyStroke.getKeyStroke(KeyEvent.VK_H, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+      Resources.getIcon("help16"), "Display help", new Integer(KeyEvent.VK_I),
+      KeyStroke.getKeyStroke(KeyEvent.VK_I, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
   private ShowAboutAction showAboutAction = new ShowAboutAction("About",
       Resources.getIcon("info16"), "Display about information", null, null);
   
   
 //theme selector
+ private SelectLightTheme selectLightTheme = new SelectLightTheme("Light Theme",
+	      Resources.getIcon("changetheme"), "Light theme", new Integer(KeyEvent.VK_W),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_W, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectGreenTheme selectGreenTheme = new SelectGreenTheme("Nature Green Theme",
+	      Resources.getIcon("changetheme"), "Nature green theme", new Integer(KeyEvent.VK_G),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_G, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectDarkTheme selectDarkTheme = new SelectDarkTheme("Dark Theme",
 	      Resources.getIcon("changetheme"), "Dark theme", new Integer(KeyEvent.VK_K),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_K, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectDarkOrangeTheme selectDarkOrangeTheme = new SelectDarkOrangeTheme("Dark Orange Theme",
 	      Resources.getIcon("changetheme"), "Dark orange theme", new Integer(KeyEvent.VK_M),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_M, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
- private SelectLightTheme selectLightTheme = new SelectLightTheme("Light Theme",
-	      Resources.getIcon("changetheme"), "Light theme", new Integer(KeyEvent.VK_W),
-	      KeyStroke.getKeyStroke(KeyEvent.VK_W, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectHiberbeeTheme selectHiberbeeTheme = new SelectHiberbeeTheme("Deep Dark Theme",
 	      Resources.getIcon("changetheme"), "Hiberbee dark theme", new Integer(KeyEvent.VK_B),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_B, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
- private SelectGreenTheme selectGreenTheme = new SelectGreenTheme("Nature Green Theme",
-	      Resources.getIcon("changetheme"), "Nature green theme", new Integer(KeyEvent.VK_G),
-	      KeyStroke.getKeyStroke(KeyEvent.VK_G, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectVuesionTheme selectVuesionTheme = new SelectVuesionTheme("Hyper Dark Theme",
 	      Resources.getIcon("changetheme"), "Vuesion theme", new Integer(KeyEvent.VK_N),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_N, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
@@ -1230,13 +1230,8 @@ public class ActionManager {
 		@Override
 		public void actionPerformed(java.awt.event.ActionEvent evt) {				
 			
-			try {
-				UIManager.setLookAndFeel( new FlatDarkLaf() );
-		    } catch( Exception ex ) {
-		        System.err.println( "Failed to initialize Laf" );
-		    }
-			
-			FlatLaf.updateUI();
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectDarkTheme");;
 			
 		}
 
@@ -1254,13 +1249,8 @@ public class ActionManager {
 		@Override
 		public void actionPerformed(java.awt.event.ActionEvent evt) {				
 			
-			try {
-				FlatArcDarkOrangeIJTheme.setup();
-		    } catch( Exception ex ) {
-		        System.err.println( "Failed to initialize Laf" );
-		    }
-
-			FlatLaf.updateUI();
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectDarkOrangeTheme");
 
 		}
 
@@ -1278,13 +1268,8 @@ public class ActionManager {
 		@Override
 		public void actionPerformed(java.awt.event.ActionEvent evt) {				
 			
-			try {
-				FlatLightLaf.setup();
-		    } catch( Exception ex ) {
-		        System.err.println( "Failed to initialize Laf" );
-		    }
-
-			FlatLaf.updateUI();	
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectLightTheme");;	
 
 		}
 
@@ -1302,13 +1287,8 @@ public class ActionManager {
 		@Override
 		public void actionPerformed(java.awt.event.ActionEvent evt) {				
 			
-			try {
-				FlatHiberbeeDarkIJTheme.setup();
-		    } catch( Exception ex ) {
-		        System.err.println( "Failed to initialize Laf" );
-		    }
-
-			FlatLaf.updateUI();	
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectHiberbeeTheme");	
 
 		}
 
@@ -1326,13 +1306,8 @@ public class ActionManager {
 		@Override
 		public void actionPerformed(java.awt.event.ActionEvent evt) {				
 			
-			try {
-				FlatGradiantoNatureGreenIJTheme.setup();
-		    } catch( Exception ex ) {
-		        System.err.println( "Failed to initialize Laf" );
-		    }
-
-			FlatLaf.updateUI();	
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectGreenTheme");
 
 		}
 
@@ -1350,13 +1325,8 @@ public class ActionManager {
 		@Override
 		public void actionPerformed(java.awt.event.ActionEvent evt) {				
 			
-			try {
-				FlatVuesionIJTheme.setup();
-		    } catch( Exception ex ) {
-		        System.err.println( "Failed to initialize Laf" );
-		    }
-
-			FlatLaf.updateUI();	
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectVuesionTheme");	
 
 		}
 
@@ -1374,22 +1344,14 @@ public class ActionManager {
     	}
 
 		@Override
-		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+		public void actionPerformed(java.awt.event.ActionEvent evt) {		
 			
-			try {
-				FlatHighContrastIJTheme.setup();
-		    } catch( Exception ex ) {
-		        System.err.println( "Failed to initialize Laf" );
-		    }
-
-			FlatLaf.updateUI();	
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectContrastTheme");
 
 		}
 
     }
-    
-    
-    
-    
+
     
 } /* end ActionManger */

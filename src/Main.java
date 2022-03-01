@@ -13,10 +13,13 @@
 
 //import com.incors.plaf.alloy.AlloyLookAndFeel;
 
+import managers.ActionManager;
 import managers.FileManager;
 import managers.InterpreterManager;
 import managers.SettingsManager;
+import managers.ThemeManager;
 import managers.WindowManager;
+import view.toolbars.MainMenu;
 import managers.UndoManager;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
@@ -41,7 +44,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.logging.Level;
 import java.io.File;
 
@@ -62,7 +66,6 @@ public static void main(String[] args) {
         System.err.println( "Failed to initialize Laf" );
     }
 	
-
 	
     Logger log = Logger.getLogger("heat");
     try {

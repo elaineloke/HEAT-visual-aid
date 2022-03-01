@@ -17,6 +17,8 @@ package managers;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.logging.Logger;
@@ -369,7 +371,8 @@ public class WindowManager {
 	
     jSplitMain.setOneTouchExpandable(true);
     jSplitTree.setOneTouchExpandable(true);
-   
+  
+    
 
     try {
       /* handle closing screen */
@@ -417,6 +420,8 @@ public class WindowManager {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    
+    
   }
   
  /* show the main frame */
