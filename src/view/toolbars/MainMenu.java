@@ -63,6 +63,16 @@ public class MainMenu{
   private JMenu jMenuHelp = new JMenu();
   private JMenuItem jMenuItemContents = new JMenuItem();
   private JMenuItem jMenuItemAbout = new JMenuItem();
+  
+  /* Theme selection menu items */
+  private JMenu jMenuTheme = new JMenu();
+  private JMenuItem jMenuItemLight = new JMenuItem();
+  private JMenuItem jMenuItemDark = new JMenuItem();
+  private JMenuItem jMenuItemDarkOrange = new JMenuItem();
+  private JMenuItem jMenuItemHiberbee = new JMenuItem();
+  private JMenuItem jMenuItemGreen = new JMenuItem();
+  private JMenuItem jMenuItemVuesion = new JMenuItem();
+  private JMenuItem jMenuItemContrast = new JMenuItem();
 
   private ActionManager.UndoAction undoAction = ActionManager.getInstance()
                                                              .getUndoAction();
@@ -163,12 +173,46 @@ public class MainMenu{
     jMenuHelp.add(jMenuItemContents);
     jMenuHelp.addSeparator();
     jMenuHelp.add(jMenuItemAbout);
+    
+    /* Theme selector menu */
+    jMenuTheme.setText("Theme Selector");
+    jMenuTheme.setMnemonic('T');
+    
+    jMenuItemDark.setText("Dark theme");
+    jMenuItemDark.setAction(am.selectDarkTheme());
+    jMenuTheme.add(jMenuItemDark);
+    
+    jMenuItemDarkOrange.setText("Dark orange theme");
+    jMenuItemDarkOrange.setAction(am.selectDarkOrangeTheme());
+    jMenuTheme.add(jMenuItemDarkOrange);
+    
+    jMenuItemLight.setText("Light theme");
+    jMenuItemLight.setAction(am.selectLightTheme());
+    jMenuTheme.add(jMenuItemLight);
+    
+    jMenuItemHiberbee.setText("Hiberbee dark theme");
+    jMenuItemHiberbee.setAction(am.selectHiberbeeTheme());
+    jMenuTheme.add(jMenuItemHiberbee);
+    
+    jMenuItemGreen.setText("Gradianto nature green");
+    jMenuItemGreen.setAction(am.selectGreenTheme());
+    jMenuTheme.add(jMenuItemGreen);
+    
+    jMenuItemVuesion.setText("Vuesion");
+    jMenuItemVuesion.setAction(am.selectVuesionTheme());
+    jMenuTheme.add(jMenuItemVuesion);
+    
+    jMenuItemContrast.setText("Contrast");
+    jMenuItemContrast.setAction(am.selectContrastTheme());
+    jMenuTheme.add(jMenuItemContrast);
 
     /* Main Bar */
     jMenuBar.add(jMenuFile);
     jMenuBar.add(jMenuEdit);
     jMenuBar.add(jMenuRun);
     jMenuBar.add(jMenuHelp);
+    jMenuBar.add(jMenuTheme);
+
     
     // Mac specific stuff
     // Application app = Application.getApplication();
