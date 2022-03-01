@@ -55,6 +55,15 @@ public class Main {
    */
 	
 public static void main(String[] args) {
+	
+	try {
+		UIManager.setLookAndFeel( new FlatDarculaLaf() );
+    } catch( Exception ex ) {
+        System.err.println( "Failed to initialize Laf" );
+    }
+	
+
+	
     Logger log = Logger.getLogger("heat");
     try {
         log.setUseParentHandlers(false);  // turn off logging on stdout console
@@ -72,7 +81,6 @@ public static void main(String[] args) {
     WindowManager wm = WindowManager.getInstance();
 
     sm.loadSettings();
-    WindowManager.setLookAndFeel();
     wm.createGUI();
 
     if (sm.isNewSettingsFile())

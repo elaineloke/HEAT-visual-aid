@@ -22,7 +22,7 @@ import utils.Resources;
 import utils.Settings;
 import utils.InterpreterParser;
 
-import view.dialogs.SystemDialogs;
+//import view.dialogs.SystemDialogs;
 import view.windows.*;
 
 import java.awt.event.ActionEvent;
@@ -35,8 +35,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
+
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatGradiantoNatureGreenIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatHiberbeeDarkIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatVuesionIJTheme;
+
+//import com.sun.tools.javac.Main;
+
+
 
 /**
  * The manager Class responsible for all GUI action commands
@@ -142,6 +156,31 @@ public class ActionManager {
       KeyStroke.getKeyStroke(KeyEvent.VK_H, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
   private ShowAboutAction showAboutAction = new ShowAboutAction("About",
       Resources.getIcon("info16"), "Display about information", null, null);
+  
+  
+//theme selector
+ private SelectDarkTheme selectDarkTheme = new SelectDarkTheme("Dark Theme",
+	      Resources.getIcon("changetheme"), "Dark theme", new Integer(KeyEvent.VK_D),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_D, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectDarkOrangeTheme selectDarkOrangeTheme = new SelectDarkOrangeTheme("Dark Orange Theme",
+	      Resources.getIcon("changetheme"), "Dark orange theme", new Integer(KeyEvent.VK_O),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_O, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectLightTheme selectLightTheme = new SelectLightTheme("Light Theme",
+	      Resources.getIcon("changetheme"), "Light theme", new Integer(KeyEvent.VK_L),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_L, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectHiberbeeTheme selectHiberbeeTheme = new SelectHiberbeeTheme("Deep Dark Theme",
+	      Resources.getIcon("changetheme"), "Hiberbee dark theme", new Integer(KeyEvent.VK_H),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_H, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectGreenTheme selectGreenTheme = new SelectGreenTheme("Nature Green Theme",
+	      Resources.getIcon("changetheme"), "Nature green theme", new Integer(KeyEvent.VK_G),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_G, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectVuesionTheme selectVuesionTheme = new SelectVuesionTheme("Hyper Dark Theme",
+	      Resources.getIcon("changetheme"), "Vuesion theme", new Integer(KeyEvent.VK_B),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_B, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectContrastTheme selectContrastTheme = new SelectContrastTheme("High Contrast Theme",
+	      Resources.getIcon("changetheme"), "High contrast theme", new Integer(KeyEvent.VK_H),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_H, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+
   
 
   private RefreshTreeAction refreshTreeAction = new RefreshTreeAction("", Resources.getIcon("reload16"),
@@ -350,6 +389,35 @@ public class ActionManager {
   public ActionManager.GoToRecentConsoleHistory getGoToRecentConsoleHistory(){
 	  return goToRecentConsoleHistory;
   }
+  
+  public ActionManager.SelectDarkTheme selectDarkTheme(){
+	  return selectDarkTheme;
+  }
+  
+  public ActionManager.SelectDarkOrangeTheme selectDarkOrangeTheme(){
+	  return selectDarkOrangeTheme;
+  }
+  
+  public ActionManager.SelectLightTheme selectLightTheme(){
+	  return selectLightTheme;
+  }
+  
+  public ActionManager.SelectHiberbeeTheme selectHiberbeeTheme(){
+	  return selectHiberbeeTheme;
+  }
+  
+  public ActionManager.SelectGreenTheme selectGreenTheme(){
+	  return selectGreenTheme;
+  }
+  
+  public ActionManager.SelectVuesionTheme selectVuesionTheme(){
+	  return selectVuesionTheme;
+  }
+  
+  public ActionManager.SelectContrastTheme selectContrastTheme(){
+	  return selectContrastTheme;
+  }
+  
 
     /* The Action SubClasses Follow  */
   /*
@@ -1143,6 +1211,183 @@ public class ActionManager {
         }
       
     }
+    
+    /**
+     * Apply the selected theme when the related button is clicked
+     * @author el345
+     *
+     */
+    
+    /*select dark theme*/
+    public class SelectDarkTheme extends AbstractAction {
+    	public SelectDarkTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+			
+			try {
+				UIManager.setLookAndFeel( new FlatDarkLaf() );
+		    } catch( Exception ex ) {
+		        System.err.println( "Failed to initialize Laf" );
+		    }
+			
+			FlatLaf.updateUI();
+			
+		}
+
+    }
+    
+    /*select dark orange theme*/
+    public class SelectDarkOrangeTheme extends AbstractAction {
+    	public SelectDarkOrangeTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+			
+			try {
+				FlatArcDarkOrangeIJTheme.setup();
+		    } catch( Exception ex ) {
+		        System.err.println( "Failed to initialize Laf" );
+		    }
+
+			FlatLaf.updateUI();
+
+		}
+
+    }
+    
+    /*select light theme*/
+    public class SelectLightTheme extends AbstractAction {
+    	public SelectLightTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+			
+			try {
+				FlatLightLaf.setup();
+		    } catch( Exception ex ) {
+		        System.err.println( "Failed to initialize Laf" );
+		    }
+
+			FlatLaf.updateUI();	
+
+		}
+
+    }
+    
+    /*select hiberbee dark theme*/
+    public class SelectHiberbeeTheme extends AbstractAction {
+    	public SelectHiberbeeTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+			
+			try {
+				FlatHiberbeeDarkIJTheme.setup();
+		    } catch( Exception ex ) {
+		        System.err.println( "Failed to initialize Laf" );
+		    }
+
+			FlatLaf.updateUI();	
+
+		}
+
+    }
+    
+    /*select gradianto nature green theme*/
+    public class SelectGreenTheme extends AbstractAction {
+    	public SelectGreenTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+			
+			try {
+				FlatGradiantoNatureGreenIJTheme.setup();
+		    } catch( Exception ex ) {
+		        System.err.println( "Failed to initialize Laf" );
+		    }
+
+			FlatLaf.updateUI();	
+
+		}
+
+    }
+    
+    /*select vuesion theme*/
+    public class SelectVuesionTheme extends AbstractAction {
+    	public SelectVuesionTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+			
+			try {
+				FlatVuesionIJTheme.setup();
+		    } catch( Exception ex ) {
+		        System.err.println( "Failed to initialize Laf" );
+		    }
+
+			FlatLaf.updateUI();	
+
+		}
+
+    }
+    
+    /*select high contrast theme*/
+    public class SelectContrastTheme extends AbstractAction {
+    
+
+		public SelectContrastTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+			
+			try {
+				FlatHighContrastIJTheme.setup();
+		    } catch( Exception ex ) {
+		        System.err.println( "Failed to initialize Laf" );
+		    }
+
+			FlatLaf.updateUI();	
+
+		}
+
+    }
+    
     
     
     
