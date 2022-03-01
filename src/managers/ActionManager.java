@@ -160,26 +160,26 @@ public class ActionManager {
   
 //theme selector
  private SelectDarkTheme selectDarkTheme = new SelectDarkTheme("Dark Theme",
-	      Resources.getIcon("changetheme"), "Dark theme", new Integer(KeyEvent.VK_D),
-	      KeyStroke.getKeyStroke(KeyEvent.VK_D, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+	      Resources.getIcon("changetheme"), "Dark theme", new Integer(KeyEvent.VK_K),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_K, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectDarkOrangeTheme selectDarkOrangeTheme = new SelectDarkOrangeTheme("Dark Orange Theme",
-	      Resources.getIcon("changetheme"), "Dark orange theme", new Integer(KeyEvent.VK_O),
-	      KeyStroke.getKeyStroke(KeyEvent.VK_O, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+	      Resources.getIcon("changetheme"), "Dark orange theme", new Integer(KeyEvent.VK_M),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_M, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectLightTheme selectLightTheme = new SelectLightTheme("Light Theme",
-	      Resources.getIcon("changetheme"), "Light theme", new Integer(KeyEvent.VK_L),
-	      KeyStroke.getKeyStroke(KeyEvent.VK_L, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+	      Resources.getIcon("changetheme"), "Light theme", new Integer(KeyEvent.VK_W),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_W, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectHiberbeeTheme selectHiberbeeTheme = new SelectHiberbeeTheme("Deep Dark Theme",
-	      Resources.getIcon("changetheme"), "Hiberbee dark theme", new Integer(KeyEvent.VK_H),
-	      KeyStroke.getKeyStroke(KeyEvent.VK_H, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+	      Resources.getIcon("changetheme"), "Hiberbee dark theme", new Integer(KeyEvent.VK_B),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_B, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectGreenTheme selectGreenTheme = new SelectGreenTheme("Nature Green Theme",
 	      Resources.getIcon("changetheme"), "Nature green theme", new Integer(KeyEvent.VK_G),
 	      KeyStroke.getKeyStroke(KeyEvent.VK_G, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectVuesionTheme selectVuesionTheme = new SelectVuesionTheme("Hyper Dark Theme",
-	      Resources.getIcon("changetheme"), "Vuesion theme", new Integer(KeyEvent.VK_B),
-	      KeyStroke.getKeyStroke(KeyEvent.VK_B, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+	      Resources.getIcon("changetheme"), "Vuesion theme", new Integer(KeyEvent.VK_N),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_N, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
  private SelectContrastTheme selectContrastTheme = new SelectContrastTheme("High Contrast Theme",
-	      Resources.getIcon("changetheme"), "High contrast theme", new Integer(KeyEvent.VK_H),
-	      KeyStroke.getKeyStroke(KeyEvent.VK_H, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+	      Resources.getIcon("changetheme"), "High contrast theme", new Integer(KeyEvent.VK_R),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_R, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 
   
 
