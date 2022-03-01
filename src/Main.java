@@ -62,7 +62,7 @@ public static void main(String[] args) {
         System.err.println( "Failed to initialize Laf" );
     }
 	
-
+    new Zoom();
 	
     Logger log = Logger.getLogger("heat");
     try {
