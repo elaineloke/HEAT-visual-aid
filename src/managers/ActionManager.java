@@ -22,7 +22,8 @@ import utils.Resources;
 import utils.Settings;
 import utils.InterpreterParser;
 
-//import view.dialogs.SystemDialogs;
+import view.dialogs.SystemDialogs;
+import view.toolbars.MainMenu;
 import view.windows.*;
 
 import java.awt.event.ActionEvent;
@@ -763,12 +764,14 @@ public class ActionManager {
 
     public void actionPerformed(ActionEvent e) {
       WindowManager wm = WindowManager.getInstance();
+      MainMenu mainMenu = wm.getMainMenu();
       boolean essentialChange = false;
 
       String interpreterPath = wm.getOptionsWindow().getInterpreterPath();
       String interpreterOpts = wm.getOptionsWindow().getInterpreterOpts();
       String libraryPath = wm.getOptionsWindow().getLibraryPath();
       String outputFontSize = wm.getOptionsWindow().getOuputFontSize();
+      String menuFontSize = wm.getOptionsWindow().getMenuFontSize();
       String codeFontSize = wm.getOptionsWindow().getCodeFontSize();
       SettingsManager sm = SettingsManager.getInstance();
       InterpreterManager im = InterpreterManager.getInstance();
@@ -794,6 +797,15 @@ public class ActionManager {
         log.warning("[ActionManager] - Failed to parse " +
           Settings.OUTPUT_FONT_SIZE + " setting from options window");
       }
+      
+      try {
+          int menuFontsize = Integer.parseInt(menuFontSize);
+          mainMenu.setFontSize(menuFontsize);
+          sm.setSetting(Settings.MENU_FONT_SIZE, menuFontSize);
+        } catch (NumberFormatException nfe) {
+          log.warning("[ActionManager] - Failed to parse " +
+            Settings.MENU_FONT_SIZE + " setting from options window");
+        }
 
       try {
         int codeFontsize = Integer.parseInt(codeFontSize);

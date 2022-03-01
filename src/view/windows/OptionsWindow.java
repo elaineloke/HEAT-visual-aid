@@ -57,6 +57,7 @@ public class OptionsWindow {
   private JTextField jTextFieldTestFunction;
   private JTextField jTextFieldTestPositive;
   private JComboBox jcbOutputFontSize;
+  private JComboBox jcbMenuFontSize;
   private JComboBox jcbCodeFontSize;
   private JDialog dialog;
 
@@ -136,19 +137,25 @@ public class OptionsWindow {
     // panel for setting font sizes
     JPanel panelFontSizes = new JPanel(new GridLayout(0,1));
     jcbOutputFontSize = new JComboBox();
+    jcbMenuFontSize = new JComboBox();
     jcbCodeFontSize = new JComboBox();
  /* Populate the font size combo boxes */
     for (int i = 10; i < 25; i++) {
       jcbOutputFontSize.addItem(String.valueOf(i));
+      jcbMenuFontSize.addItem(String.valueOf(i));
       jcbCodeFontSize.addItem(String.valueOf(i));
     }
     JPanel editorFontSize = new JPanel();
     editorFontSize.add(new JLabel("Editor font size: "));
     editorFontSize.add(jcbCodeFontSize);
+    JPanel menuFontSize = new JPanel();
+    menuFontSize.add(new JLabel("Menu and Setting font size: "));
+    menuFontSize.add(jcbMenuFontSize);
     JPanel interpreterFontSize = new JPanel();
     interpreterFontSize.add(new JLabel("Interpreter font size:"));
     interpreterFontSize.add(jcbOutputFontSize);
     panelFontSizes.add(editorFontSize);
+    panelFontSizes.add(menuFontSize);
     panelFontSizes.add(interpreterFontSize);
     
     // combine panels on tabbed pane
@@ -212,6 +219,7 @@ public class OptionsWindow {
     jTextFieldTestFunction.setText(sm.getSetting(Settings.TEST_FUNCTION));
     jTextFieldTestPositive.setText(sm.getSetting(Settings.TEST_POSITIVE));
     jcbOutputFontSize.setSelectedItem(sm.getSetting(Settings.OUTPUT_FONT_SIZE));
+    jcbMenuFontSize.setSelectedItem(sm.getSetting(Settings.MENU_FONT_SIZE));
     jcbCodeFontSize.setSelectedItem(sm.getSetting(Settings.CODE_FONT_SIZE));
   }
 
@@ -258,6 +266,15 @@ public class OptionsWindow {
    */
   public String getOuputFontSize() {
     return (String) jcbOutputFontSize.getSelectedItem();
+  }
+  
+  /**
+   * Returns the desired font size for menu
+   *
+   * @return the menu font size
+   */
+  public String getMenuFontSize() {
+    return (String) jcbMenuFontSize.getSelectedItem();
   }
 
   /**
