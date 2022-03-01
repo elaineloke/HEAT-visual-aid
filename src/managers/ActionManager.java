@@ -35,6 +35,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
@@ -1228,10 +1229,10 @@ public class ActionManager {
     	}
 
 		@Override
-		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+		public void actionPerformed(ActionEvent evt) {				
 			
 			ThemeManager tm = new ThemeManager();
-			tm.changeTheme("SelectDarkTheme");;
+			tm.changeTheme("SelectDarkTheme");
 			
 		}
 
@@ -1247,7 +1248,7 @@ public class ActionManager {
     	}
 
 		@Override
-		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+		public void actionPerformed(ActionEvent evt) {				
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectDarkOrangeTheme");
@@ -1266,7 +1267,7 @@ public class ActionManager {
     	}
 
 		@Override
-		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+		public void actionPerformed(ActionEvent evt) {				
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectLightTheme");;	
@@ -1285,7 +1286,7 @@ public class ActionManager {
     	}
 
 		@Override
-		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+		public void actionPerformed(ActionEvent evt) {				
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectHiberbeeTheme");	
@@ -1304,7 +1305,7 @@ public class ActionManager {
     	}
 
 		@Override
-		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+		public void actionPerformed(ActionEvent evt) {				
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectGreenTheme");
@@ -1323,7 +1324,7 @@ public class ActionManager {
     	}
 
 		@Override
-		public void actionPerformed(java.awt.event.ActionEvent evt) {				
+		public void actionPerformed(ActionEvent evt) {				
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectVuesionTheme");	
@@ -1344,7 +1345,7 @@ public class ActionManager {
     	}
 
 		@Override
-		public void actionPerformed(java.awt.event.ActionEvent evt) {		
+		public void actionPerformed(ActionEvent evt) {		
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectContrastTheme");
