@@ -13,11 +13,16 @@
 
 //import com.incors.plaf.alloy.AlloyLookAndFeel;
 
+
+import managers.ActionManager;
 import managers.AudioManager;
+>>>>>>> src/Main.java
 import managers.FileManager;
 import managers.InterpreterManager;
 import managers.SettingsManager;
+import managers.ThemeManager;
 import managers.WindowManager;
+import view.toolbars.MainMenu;
 import managers.UndoManager;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
@@ -25,8 +30,11 @@ import java.util.logging.Handler;
 import java.util.logging.SimpleFormatter;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
-import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
+
 
 import javax.print.attribute.standard.Media;
 import javax.sound.sampled.AudioInputStream;
@@ -38,11 +46,18 @@ import javax.swing.plaf.FontUIResource;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 import java.util.logging.Level;
 import java.io.File;
 import java.io.FileInputStream;
@@ -60,6 +75,10 @@ public class Main {
 	static boolean continuePlaying = true;
 	
 public static void main(String[] args) {
+	
+	
+	
+	
     Logger log = Logger.getLogger("heat");
     try {
         log.setUseParentHandlers(false);  // turn off logging on stdout console
@@ -75,10 +94,13 @@ public static void main(String[] args) {
 	  
     SettingsManager sm = SettingsManager.getInstance();
     WindowManager wm = WindowManager.getInstance();
+    
 
     sm.loadSettings();
-    WindowManager.setLookAndFeel();
+    wm.setLookAndFeel();
     wm.createGUI();
+    
+
 
     if (sm.isNewSettingsFile())
       wm.showWizardWindow();
@@ -106,8 +128,14 @@ public static void main(String[] args) {
     }
     wm.setVisible();
 
+	ThemeManager tm = new ThemeManager();
+	tm.popUpTheme();
+   
     AudioManager audioManager = new AudioManager();
     audioManager.createAudioPopUP();
 }
+
 }
+	
+
   
