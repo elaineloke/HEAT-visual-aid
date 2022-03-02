@@ -186,6 +186,7 @@ public class HelpWindow {
             log.warning("[HelpWindow] - " + nodeInfo.toString());
         }
       });
+   
   }
 
   private void initHelp() {

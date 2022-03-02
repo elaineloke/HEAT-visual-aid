@@ -70,6 +70,7 @@ public class OptionsWindow {
   private JComboBox jcbCodeFontSize;
   private JDialog dialog;
   private JTabbedPane tabOptions = new JTabbedPane();
+  private JPanel panelButtons;
 
   private SettingsManager sm = SettingsManager.getInstance();
   private WindowManager wm = WindowManager.getInstance();
@@ -153,7 +154,7 @@ public class OptionsWindow {
     jcbMenuFontSize = new JComboBox();
     jcbCodeFontSize = new JComboBox();
  /* Populate the font size combo boxes */
-    for (int i = 10; i < 25; i++) {
+    for (int i = 14; i <= 30; i+=2) {
       jcbOutputFontSize.addItem(String.valueOf(i));
       jcbMenuFontSize.addItem(String.valueOf(i));
       jcbCodeFontSize.addItem(String.valueOf(i));
@@ -186,7 +187,7 @@ public class OptionsWindow {
           close();
         }
       });
-    JPanel panelButtons = new JPanel();
+    panelButtons = new JPanel();
     panelButtons.add(buttonApply);
     panelButtons.add(buttonCancel);
     
@@ -210,6 +211,10 @@ public class OptionsWindow {
    * @param ptSize desired font size
    */
   public void setFontSize(int ptSize) {
+	    Component[] panelBtns = panelButtons.getComponents();
+	    for(Component panelBtn: panelBtns) {
+	    	panelBtn.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize-FONT_SIZE_DIFF));
+	    }
 	    //test merge
 	    Component[] tabs = tabOptions.getComponents();
 	    tabOptions.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize-FONT_SIZE_DIFF));
@@ -249,8 +254,8 @@ public class OptionsWindow {
     dialog = new JDialog(wm.getMainScreenFrame(), "Options");
     dialog.setModal(true);
     dialog.getContentPane().add(panelOptions);      //(jTabbedPane1);
-    dialog.setMinimumSize(new Dimension(800,450));
-    dialog.setSize(1000, 500);
+    dialog.setMinimumSize(new Dimension(1000,450));
+    dialog.setSize(1400, 700);
     dialog.setLocationRelativeTo(wm.getMainScreenFrame());
     dialog.setVisible(true);
   }
@@ -348,6 +353,10 @@ public class OptionsWindow {
 //    close();
 //  }
 
+  
+  public JComboBox getMenuFontSizeComboBox(){
+	  return jcbMenuFontSize;
+  }
   
   /**
    * Browse for an interpreter file with full path
