@@ -41,6 +41,11 @@ public class Settings {
    * The font size used in the output window
    */
   public static final String OUTPUT_FONT_SIZE = "OUTPUT_FONT_SIZE";
+  
+  /**
+   * The font size used in the JMenuBar
+   */
+  public static final String MENU_FONT_SIZE = "MENU_FONT_SIZE";
 
   /**
    * The font size used in the display window
@@ -54,4 +59,9 @@ public class Settings {
   
   public static final String TEST_POSITIVE = "TEST_POSITIVE";
   
+  /*
+   * Setting the selected theme
+   */
+  public static final String ACCESSIBILITY_THEME = "ACCESSIBILITY_THEME";
+
 }

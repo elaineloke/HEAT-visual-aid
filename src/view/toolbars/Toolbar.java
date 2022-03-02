@@ -97,6 +97,7 @@ public class Toolbar {
     statusButton.setText("Status");
     statusButton.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
     setCompileStatus(1);
+    
   }
 
   /**
