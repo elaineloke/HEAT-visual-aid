@@ -16,10 +16,17 @@
 package view.toolbars;
 
 import managers.ActionManager;
+import managers.SettingsManager;
+import utils.Settings;
+
+import java.awt.Font;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.MenuElement;
+
+import java.awt.Component;
 
 // import com.apple.eawt.Application;
 
@@ -62,6 +69,7 @@ public class MainMenu {
   private ActionManager.RedoAction redoAction = ActionManager.getInstance()
                                                              .getRedoAction();
   private JMenuItem jMenuItemSearch = new JMenuItem();
+  private SettingsManager sm = SettingsManager.getInstance();
 
   /**
    * Creates a new MainMenu object.
@@ -167,6 +175,11 @@ public class MainMenu {
     // app.setAboutHandler(null);
     // app.setPreferencesHandler(null);
     // app.setQuitHandler(null);
+    
+    /* Use font size from settings if it exists */
+    String fontSize = sm.getSetting(Settings.MENU_FONT_SIZE);
+    if ((fontSize != null) && (fontSize != "")) setFontSize(Integer.parseInt(fontSize));
+  
   }
 
   /**
@@ -211,5 +224,24 @@ public class MainMenu {
     jMenuItemCompile.setEnabled(enabled);
   }
   
-
+  /**
+   * Update menu font size
+   * 
+   * @param ptSize desired font size
+   */
+  public void setFontSize(int ptSize) {
+	  MenuElement[] menuEles= jMenuBar.getSubElements();
+	  for(MenuElement ele: menuEles) {
+		  Component component = ele.getComponent();
+		  component.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize));
+		  
+		  if(component instanceof JMenu) {
+			  JMenu menuComponent = (JMenu) component;
+			  Component[] itemEles= menuComponent.getMenuComponents();
+			  for(Component itemEle: itemEles) {
+				  itemEle.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize));
+			  }
+		  }
+	  }
+  }
 }

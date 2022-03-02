@@ -15,15 +15,19 @@
 
 package view.windows;
 
+import managers.SettingsManager;
 import managers.WindowManager;
 
 import java.util.logging.Logger;
 
 import utils.Resources;
+import utils.Settings;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -77,6 +81,9 @@ public class HelpWindow {
   private JSplitPane splitPane = new JSplitPane();
   private BorderLayout borderLayout1 = new BorderLayout();
   private JTree tree;
+  
+  private SettingsManager sm = SettingsManager.getInstance();
+  private static final int TREE_ROW_HEIGHT_DIFF = 7;
 
   public HelpWindow() {
     try {
@@ -121,10 +128,11 @@ public class HelpWindow {
     jPanel2.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 170));
     flowLayout1.setAlignment(0);
     flowLayout1.setHgap(0);
+    
 
     jBack.setText("Back");
-    jBack.setPreferredSize(new Dimension(100, 25));
-    jBack.setSize(new Dimension(110, 25));
+    jBack.setPreferredSize(new Dimension(200, 40));
+    jBack.setSize(new Dimension(200, 40));
     jBack.setIcon(iconBack);
     jBack.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -132,8 +140,8 @@ public class HelpWindow {
         }
       });
     jForward.setText("Forward");
-    jForward.setPreferredSize(new Dimension(100, 25));
-    jForward.setSize(new Dimension(110, 25));
+    jForward.setPreferredSize(new Dimension(200, 40));
+    jForward.setSize(new Dimension(200, 40));
     jForward.setIcon(iconForward);
     jForward.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -141,8 +149,8 @@ public class HelpWindow {
         }
       });
     jHome.setText("Home");
-    jHome.setPreferredSize(new Dimension(100, 25));
-    jHome.setSize(new Dimension(110, 25));
+    jHome.setPreferredSize(new Dimension(200, 40));
+    jHome.setSize(new Dimension(200, 40));
     jHome.setIcon(iconHome);
     jHome.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -186,6 +194,28 @@ public class HelpWindow {
             log.warning("[HelpWindow] - " + nodeInfo.toString());
         }
       });
+   
+    /* Use font size from settings if it exists */
+    String fontSize = sm.getSetting(Settings.MENU_FONT_SIZE);
+    if ((fontSize != null) && (fontSize != "")) setFontSize(Integer.parseInt(fontSize));
+    
+  }
+  
+  /**
+   * Update help window font size
+   * 
+   * @param ptSize desired font size
+   */
+  public void setFontSize(int ptSize) {
+	  Component[] btnComps = jPanel2.getComponents();
+	  for(Component btnComp: btnComps) {
+		  if(btnComp instanceof JButton) {
+			  JButton tempBtn = (JButton) btnComp;
+			  tempBtn.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize));
+		  }
+	  }
+  		tree.setFont(new Font("Tahoma", Font.PLAIN, ptSize));
+  		tree.setRowHeight(ptSize+TREE_ROW_HEIGHT_DIFF);
   }
 
   private void initHelp() {
@@ -239,11 +269,12 @@ public class HelpWindow {
     top.add(new DefaultMutableTreeNode(new BookInfo("Checking Properties","properties")));
     top.add(new DefaultMutableTreeNode(new BookInfo("Haskell Interpreter","interpreter")));
     top.add(new DefaultMutableTreeNode(new BookInfo("Limitations ... bugs","problems")));
+    top.add(new DefaultMutableTreeNode(new BookInfo("Hotkeys","hotkeys")));
   }
 
   public void show() {
     frame.getContentPane().add(jPanel0);
-    frame.setSize(670, 435);
+    frame.setSize(800, 435);
     frame.setLocationRelativeTo(WindowManager.getInstance().getMainScreenFrame());
     frame.setVisible(true);
   }
