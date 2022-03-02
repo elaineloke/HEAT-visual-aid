@@ -16,6 +16,7 @@
 package view.windows;
 
 import managers.SettingsManager;
+import managers.ThemeManager;
 import managers.WindowManager;
 
 import java.util.logging.Logger;
@@ -129,6 +130,7 @@ public class HelpWindow {
     jPanel2.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 170));
     flowLayout1.setAlignment(0);
     flowLayout1.setHgap(0);
+    
 
     jBack.setText("Back");
     jBack.setPreferredSize(new Dimension(200, 40));
