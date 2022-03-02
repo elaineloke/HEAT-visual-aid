@@ -17,8 +17,14 @@ package managers;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.awt.image.LookupOp;
+import java.awt.image.LookupTable;
+import java.awt.image.ShortLookupTable;
 import java.util.logging.Logger;
 
 import javax.swing.JButton;
@@ -26,6 +32,9 @@ import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+
+import com.formdev.flatlaf.FlatDarculaLaf;
+
 import javax.swing.JOptionPane;
 import java.awt.Dimension;
 
@@ -369,7 +378,8 @@ public class WindowManager {
 	
     jSplitMain.setOneTouchExpandable(true);
     jSplitTree.setOneTouchExpandable(true);
-   
+  
+    
 
     try {
       /* handle closing screen */
@@ -417,6 +427,8 @@ public class WindowManager {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    
+    
   }
   
  /* show the main frame */
@@ -626,6 +638,7 @@ public class WindowManager {
     try {
       UIManager.setLookAndFeel(lnfString);
       SwingUtilities.updateComponentTreeUI(getMainScreenFrame());
+      UIManager.installLookAndFeel("High Contrast Theme", com.formdev.flatlaf.FlatIntelliJLaf.class.getName());
       optionsWindow = new OptionsWindow();
       helpWindow = new HelpWindow();
       aboutWindow = new AboutWindow();
@@ -683,12 +696,21 @@ public class WindowManager {
   /**
    * Sets the look and feel for the program
    */
+//  public static void setLookAndFeel() {
+//    try {
+//         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//    } catch (Exception e) {
+//      log.warning("[WindowManager] Unable to set look and feel");
+//    }
+//  }
+//  
+  
   public static void setLookAndFeel() {
-    try {
-         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-    } catch (Exception e) {
-      log.warning("[WindowManager] Unable to set look and feel");
-    }
-  }
+	    try {
+	         UIManager.setLookAndFeel(new FlatDarculaLaf());
+	    } catch (Exception e) {
+	      log.warning("[WindowManager] Unable to set look and feel");
+	    }
+	  }
 
 } // end WindowManager

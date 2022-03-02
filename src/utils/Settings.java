@@ -54,4 +54,9 @@ public class Settings {
   
   public static final String TEST_POSITIVE = "TEST_POSITIVE";
   
+  /*
+   * Setting the selected theme
+   */
+  public static final String ACCESSIBILITY_THEME = "ACCESSIBILITY_THEME";
+
 }
