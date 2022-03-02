@@ -16,7 +16,6 @@
 
 import managers.ActionManager;
 import managers.AudioManager;
->>>>>>> src/Main.java
 import managers.FileManager;
 import managers.InterpreterManager;
 import managers.SettingsManager;
