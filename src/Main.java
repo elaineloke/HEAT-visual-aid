@@ -13,6 +13,7 @@
 
 //import com.incors.plaf.alloy.AlloyLookAndFeel;
 
+import managers.AudioManager;
 import managers.FileManager;
 import managers.InterpreterManager;
 import managers.SettingsManager;
@@ -22,8 +23,30 @@ import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.SimpleFormatter;
+
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+
+import javax.print.attribute.standard.Media;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
+
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 /**
  * Main HEAT class
@@ -34,6 +57,8 @@ public class Main {
    * Used to run HEAT
    * @param args
    */
+	static boolean continuePlaying = true;
+	
 public static void main(String[] args) {
     Logger log = Logger.getLogger("heat");
     try {
@@ -66,6 +91,7 @@ public static void main(String[] args) {
       im.startProcess(false);
     }
     
+
     if (args.length > 0) {
     	wm.openFile(new java.io.File(args[0]));
         wm.showAll();
@@ -79,6 +105,9 @@ public static void main(String[] args) {
         wm.getConsoleWindow().getFocus();
     }
     wm.setVisible();
-   }
+
+    AudioManager audioManager = new AudioManager();
+    audioManager.createAudioPopUP();
+}
 }
   
