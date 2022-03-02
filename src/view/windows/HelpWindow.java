@@ -15,6 +15,7 @@
 
 package view.windows;
 
+import managers.ThemeManager;
 import managers.SettingsManager;
 import managers.WindowManager;
 
