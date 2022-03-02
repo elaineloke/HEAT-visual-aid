@@ -22,7 +22,8 @@ import utils.Resources;
 import utils.Settings;
 import utils.InterpreterParser;
 
-//import view.dialogs.SystemDialogs;
+import view.dialogs.SystemDialogs;
+import view.toolbars.MainMenu;
 import view.windows.*;
 
 import java.awt.event.ActionEvent;
@@ -153,8 +154,8 @@ public class ActionManager {
 
   // help actions
   private ShowHelpAction showHelpAction = new ShowHelpAction("Help",
-      Resources.getIcon("help16"), "Display help", new Integer(KeyEvent.VK_I),
-      KeyStroke.getKeyStroke(KeyEvent.VK_I, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+      Resources.getIcon("help16"), "Display help", new Integer(KeyEvent.VK_U),
+      KeyStroke.getKeyStroke(KeyEvent.VK_U, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
   private ShowAboutAction showAboutAction = new ShowAboutAction("About",
       Resources.getIcon("info16"), "Display about information", null, null);
   
@@ -764,12 +765,14 @@ public class ActionManager {
 
     public void actionPerformed(ActionEvent e) {
       WindowManager wm = WindowManager.getInstance();
+      MainMenu mainMenu = wm.getMainMenu();
       boolean essentialChange = false;
 
       String interpreterPath = wm.getOptionsWindow().getInterpreterPath();
       String interpreterOpts = wm.getOptionsWindow().getInterpreterOpts();
       String libraryPath = wm.getOptionsWindow().getLibraryPath();
       String outputFontSize = wm.getOptionsWindow().getOuputFontSize();
+      String menuFontSize = wm.getOptionsWindow().getMenuFontSize();
       String codeFontSize = wm.getOptionsWindow().getCodeFontSize();
       SettingsManager sm = SettingsManager.getInstance();
       InterpreterManager im = InterpreterManager.getInstance();
@@ -788,13 +791,29 @@ public class ActionManager {
 
       /* Perform any font updates */
       try {
-        int outputFontsize = Integer.parseInt(outputFontSize);
+    	  int outputFontsize;
+    	  if(outputFontSize != null && outputFontSize != "") outputFontsize = Integer.parseInt(outputFontSize);
+    	  else outputFontsize = 14;
+        
         wm.getConsoleWindow().setFontSize(outputFontsize);
         sm.setSetting(Settings.OUTPUT_FONT_SIZE, outputFontSize);
       } catch (NumberFormatException nfe) {
         log.warning("[ActionManager] - Failed to parse " +
           Settings.OUTPUT_FONT_SIZE + " setting from options window");
       }
+      
+      try {
+          int menuFontsize = Integer.parseInt(menuFontSize);
+          mainMenu.setFontSize(menuFontsize);
+          wm.getOptionsWindow().setFontSize(menuFontsize);
+          wm.getTreeWindow().setFontSize(menuFontsize);
+          wm.getHelpWindow().setFontSize(menuFontsize);
+          wm.getAboutWindow().setFontSize(menuFontsize);
+          sm.setSetting(Settings.MENU_FONT_SIZE, menuFontSize);
+        } catch (NumberFormatException nfe) {
+          log.warning("[ActionManager] - Failed to parse " +
+            Settings.MENU_FONT_SIZE + " setting from options window");
+        }
 
       try {
         int codeFontsize = Integer.parseInt(codeFontSize);
