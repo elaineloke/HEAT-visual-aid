@@ -107,6 +107,11 @@ public class AboutWindow {
     if ((fontSize != null) && (fontSize != "")) setFontSize(Integer.parseInt(fontSize));
   }
 
+  /**
+   * Update AboutWindow font size
+   * 
+   * @param ptSize desired font size
+   */
   public void setFontSize(int ptSize) {
 	  ArrayList<Component> compList = new ArrayList<>();
 	  Component[] components = jpMain.getComponents();
