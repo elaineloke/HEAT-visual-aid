@@ -11,10 +11,9 @@
  *
  */
 
-//import com.incors.plaf.alloy.AlloyLookAndFeel;
 
+import managers.AudioManager;
 
-//import managers.AudioManager;
 import managers.ActionManager;
 import managers.FileManager;
 import managers.InterpreterManager;
@@ -43,16 +42,21 @@ import javax.sound.sampled.Clip;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 
-//import javazoom.jl.player.Player;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import java.util.logging.Level;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 
 /**
@@ -64,6 +68,8 @@ public class Main {
    * Used to run HEAT
    * @param args
    */
+	static boolean continuePlaying = true;
+	
 public static void main(String[] args) {
 	
 	
@@ -101,7 +107,7 @@ public static void main(String[] args) {
       im.startProcess(false);
     }
     
-    
+
     if (args.length > 0) {
     	wm.openFile(new java.io.File(args[0]));
         wm.showAll();
@@ -115,9 +121,13 @@ public static void main(String[] args) {
         wm.getConsoleWindow().getFocus();
     }
     wm.setVisible();
-    
+
 	ThemeManager tm = new ThemeManager();
 	tm.popUpTheme();
+
+    AudioManager audioManager = new AudioManager();
+    audioManager.createAudioPopUP();
+    
    }
 		
 }
