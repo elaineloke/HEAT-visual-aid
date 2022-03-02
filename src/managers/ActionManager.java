@@ -1290,6 +1290,11 @@ public class ActionManager {
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectHiberbeeTheme");	
+			
+			SettingsManager sm = SettingsManager.getInstance();
+			
+			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
+			sm.saveSettings();
 
 		}
 
@@ -1309,6 +1314,11 @@ public class ActionManager {
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectGreenTheme");
+			
+			SettingsManager sm = SettingsManager.getInstance();
+			
+			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
+			sm.saveSettings();
 
 		}
 
@@ -1327,7 +1337,12 @@ public class ActionManager {
 		public void actionPerformed(ActionEvent evt) {				
 			
 			ThemeManager tm = new ThemeManager();
-			tm.changeTheme("SelectVuesionTheme");	
+			tm.changeTheme("SelectVuesionTheme");
+			
+			SettingsManager sm = SettingsManager.getInstance();
+			
+			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
+			sm.saveSettings();
 
 		}
 
@@ -1349,6 +1364,11 @@ public class ActionManager {
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectContrastTheme");
+			
+			SettingsManager sm = SettingsManager.getInstance();
+			
+			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
+			sm.saveSettings();  
 
 		}
 
