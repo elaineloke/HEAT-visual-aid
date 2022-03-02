@@ -738,6 +738,8 @@ public class ActionManager {
           mainMenu.setFontSize(menuFontsize);
           wm.getOptionsWindow().setFontSize(menuFontsize);
           wm.getTreeWindow().setFontSize(menuFontsize);
+          wm.getHelpWindow().setFontSize(menuFontsize);
+          wm.getAboutWindow().setFontSize(menuFontsize);
           sm.setSetting(Settings.MENU_FONT_SIZE, menuFontSize);
         } catch (NumberFormatException nfe) {
           log.warning("[ActionManager] - Failed to parse " +

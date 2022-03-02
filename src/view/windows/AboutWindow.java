@@ -15,12 +15,18 @@
 
 package view.windows;
 
+import managers.SettingsManager;
 import managers.WindowManager;
 
 import utils.LinkListener;
+import utils.Settings;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Logger;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -51,6 +57,7 @@ public class AboutWindow {
   private static File localFile = new File("html/about.html");
   private java.net.URL htmURL;
   private String indexFile = "html/about.html";
+  private SettingsManager sm = SettingsManager.getInstance();
 
   public AboutWindow() {
     try {
@@ -94,14 +101,34 @@ public class AboutWindow {
     jPanel2.add(jbClose, null);
     jpMain.add(jPanel2, BorderLayout.SOUTH);
     jpMain.add(jEditorPane1, BorderLayout.CENTER);
+    
+    /* Use font size from settings if it exists */
+    String fontSize = sm.getSetting(Settings.MENU_FONT_SIZE);
+    if ((fontSize != null) && (fontSize != "")) setFontSize(Integer.parseInt(fontSize));
   }
 
+  public void setFontSize(int ptSize) {
+	  ArrayList<Component> compList = new ArrayList<>();
+	  Component[] components = jpMain.getComponents();
+	  for(Component comp: components) {
+		  if(comp instanceof JPanel) {
+			  JPanel tempPanel = (JPanel) comp;
+			  Collections.addAll(compList, tempPanel.getComponents());
+		  }
+	  }
+	  for(Component comp: compList) {
+		  if(comp instanceof JLabel || comp instanceof JButton) {
+			  comp.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize));
+		  }
+	  }
+  }
+  
   public void show() {
     dialog = new JDialog(WindowManager.getInstance().getMainScreenFrame(),
         "About HEAT");
     dialog.setModal(true);
     dialog.getContentPane().add(jpMain);
-    dialog.setSize(400, 400);
+    dialog.setSize(800, 500);
     dialog.setLocationRelativeTo(WindowManager.getInstance().getMainScreenFrame());
     dialog.setVisible(true);
   }

@@ -195,13 +195,11 @@ public class OptionsWindow {
     panelOptions = new JPanel(new BorderLayout());
     panelOptions.add(tabOptions,BorderLayout.CENTER);
     panelOptions.add(panelButtons,BorderLayout.PAGE_END);
-    
 
-    
     /* Use font size from settings if it exists */
     String fontSize = sm.getSetting(Settings.MENU_FONT_SIZE);
     if ((fontSize != null) && (fontSize != "")) setFontSize(Integer.parseInt(fontSize));
-
+    
   }
 
   
@@ -243,6 +241,7 @@ public class OptionsWindow {
 	    for(Component comp: subSubComp) {
 	    	comp.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize));
 	    }
+	    
   }
 
   /**
@@ -258,6 +257,8 @@ public class OptionsWindow {
     dialog.setSize(1400, 700);
     dialog.setLocationRelativeTo(wm.getMainScreenFrame());
     dialog.setVisible(true);
+    
+    dialog.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 30));
   }
 
   /**
