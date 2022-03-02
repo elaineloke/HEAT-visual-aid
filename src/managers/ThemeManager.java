@@ -2,6 +2,7 @@ package managers;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -14,9 +15,13 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
@@ -29,19 +34,30 @@ import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatVuesionIJTheme;
 import com.formdev.flatlaf.ui.FlatPanelUI;
 
+import utils.Settings;
 import utils.jsyntax.JEditTextArea;
 import view.windows.HelpWindow;
 import view.windows.OptionsWindow;
 
+
+/**
+ * Theme Manager stores the methods needed to set the theme across the software
+ * @author el345
+ *
+ */
+
 public class ThemeManager {
 	
 	private static Component JEditTextArea;
-	WindowManager wm = new WindowManager();
+	private static WindowManager wm = new WindowManager();
+	private static SettingsManager sm = new SettingsManager();
 	private JButton darkMode;
 	private JButton lightMode;
 	private JButton contrastMode;
 	private JFrame themeSelector;
-	private JTextArea themeText;	
+	private JTextPane themeText;	
+	
+	//Changes the theme according to the selection
 	
 	public static void changeTheme(String themeName) {
 		
@@ -54,6 +70,8 @@ public class ThemeManager {
 		    }
 			
 			FlatLaf.updateUI();
+			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
+			sm.saveSettings();
 		}
 		
 		if(themeName.equals("SelectDarkOrangeTheme")) {
@@ -64,6 +82,8 @@ public class ThemeManager {
 		    }
 			
 			FlatLaf.updateUI();
+			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
+			sm.saveSettings();
 		}
 		
 		if(themeName.equals("SelectLightTheme")) {
@@ -74,6 +94,8 @@ public class ThemeManager {
 		    }
 			
 			FlatLaf.updateUI();
+			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
+			sm.saveSettings();
 		}
 		
 		if(themeName.equals("SelectHiberbeeTheme")) {
@@ -84,6 +106,8 @@ public class ThemeManager {
 		    }
 			
 			FlatLaf.updateUI();
+			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
+			sm.saveSettings();
 		}
 		
 		if(themeName.equals("SelectGreenTheme")) {
@@ -94,6 +118,8 @@ public class ThemeManager {
 		    }
 			
 			FlatLaf.updateUI();
+			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
+			sm.saveSettings();
 		}
 		
 		if(themeName.equals("SelectVuesionTheme")) {
@@ -104,6 +130,8 @@ public class ThemeManager {
 		    }
 			
 			FlatLaf.updateUI();
+			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
+			sm.saveSettings();
 		}
 		
 		if(themeName.equals("SelectContrastTheme")) {
@@ -116,12 +144,17 @@ public class ThemeManager {
 		    }
 			
 			FlatLaf.updateUI();
+			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
+			sm.saveSettings();
 
 		}
 	}
 	
 	
-		//popup window for theme selector
+		/*
+		 *Creates a pop up window for user to select a theme when HEAT launches 
+		 *Then implements the theme to the chosen selection
+		 */
 		
 		public void popUpTheme() {
 		
@@ -129,13 +162,17 @@ public class ThemeManager {
 		darkMode = new JButton();
 		lightMode = new JButton();
 		contrastMode = new JButton();
-		themeText = new JTextArea();
+		themeText = new JTextPane();
 	
-		themeText.setText("         Select your theme");
-	
+		themeText.setText("Select your theme");
+		
+		//align the theme text in the center
+		StyledDocument doc = themeText.getStyledDocument();
+		SimpleAttributeSet sas = new SimpleAttributeSet();
+		StyleConstants.setAlignment(sas, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), sas, false);
 	
 		themeText.setFont(new FontUIResource("Arial", 30, 30));
-		themeText.setLineWrap(true);
 		themeText.setEditable(false);
 	
 		darkMode.setText("Dark Mode");
@@ -209,6 +246,10 @@ public class ThemeManager {
 			}
 		});
 	}
+		
+		/*
+		 * Sets the font size of the texts in the pop up window
+		 */
 		
 		public void setThemeFontSize() {
 			

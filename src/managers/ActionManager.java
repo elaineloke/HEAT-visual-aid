@@ -1219,7 +1219,7 @@ public class ActionManager {
      *
      */
     
-    /*select dark theme*/
+    //select dark theme
     public class SelectDarkTheme extends AbstractAction {
     	public SelectDarkTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
     		super(text,icon);
@@ -1238,7 +1238,7 @@ public class ActionManager {
 
     }
     
-    /*select dark orange theme*/
+    //select dark orange theme
     public class SelectDarkOrangeTheme extends AbstractAction {
     	public SelectDarkOrangeTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
     		super(text,icon);
@@ -1257,7 +1257,7 @@ public class ActionManager {
 
     }
     
-    /*select light theme*/
+    //select light theme
     public class SelectLightTheme extends AbstractAction {
     	public SelectLightTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
     		super(text,icon);
@@ -1276,7 +1276,7 @@ public class ActionManager {
 
     }
     
-    /*select hiberbee dark theme*/
+    //select hiberbee dark theme
     public class SelectHiberbeeTheme extends AbstractAction {
     	public SelectHiberbeeTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
     		super(text,icon);
@@ -1290,17 +1290,12 @@ public class ActionManager {
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectHiberbeeTheme");	
-			
-			SettingsManager sm = SettingsManager.getInstance();
-			
-			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
-			sm.saveSettings();
 
 		}
 
     }
     
-    /*select gradianto nature green theme*/
+    //select gradianto nature green theme
     public class SelectGreenTheme extends AbstractAction {
     	public SelectGreenTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
     		super(text,icon);
@@ -1315,16 +1310,11 @@ public class ActionManager {
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectGreenTheme");
 			
-			SettingsManager sm = SettingsManager.getInstance();
-			
-			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
-			sm.saveSettings();
-
 		}
 
     }
     
-    /*select vuesion theme*/
+    //select vuesion theme
     public class SelectVuesionTheme extends AbstractAction {
     	public SelectVuesionTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
     		super(text,icon);
@@ -1338,17 +1328,12 @@ public class ActionManager {
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectVuesionTheme");
-			
-			SettingsManager sm = SettingsManager.getInstance();
-			
-			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
-			sm.saveSettings();
 
 		}
 
     }
     
-    /*select high contrast theme*/
+    //select high contrast theme
     public class SelectContrastTheme extends AbstractAction {
     
 
@@ -1364,12 +1349,7 @@ public class ActionManager {
 			
 			ThemeManager tm = new ThemeManager();
 			tm.changeTheme("SelectContrastTheme");
-			
-			SettingsManager sm = SettingsManager.getInstance();
-			
-			sm.setSetting(Settings.ACCESSIBILITY_THEME, "True");
-			sm.saveSettings();  
-
+			 
 		}
 
     }

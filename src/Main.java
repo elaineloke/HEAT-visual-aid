@@ -13,12 +13,14 @@
 
 //import com.incors.plaf.alloy.AlloyLookAndFeel;
 
+
+//import managers.AudioManager;
 import managers.ActionManager;
 import managers.FileManager;
 import managers.InterpreterManager;
 import managers.SettingsManager;
 import managers.ThemeManager;
-//import managers.ThemeManager;
+import managers.ThemeManager;
 import managers.WindowManager;
 import view.toolbars.MainMenu;
 import managers.UndoManager;
@@ -52,6 +54,7 @@ import java.awt.event.MouseListener;
 import java.util.logging.Level;
 import java.io.File;
 
+
 /**
  * Main HEAT class
  */
@@ -62,104 +65,6 @@ public class Main {
    * @param args
    */
 public static void main(String[] args) {
-	
-	//popup window for theme selector
-	
-//	final JFrame themeSelector = new JFrame();
-//	final JButton darkMode = new JButton();
-//	final JButton lightMode = new JButton();
-//	final JButton contrastMode = new JButton();
-//	
-//	final JTextArea themeText = new JTextArea();
-//	final JTextArea themeText2 = new JTextArea();
-//
-//	themeText.setText("         Select your theme");
-//
-//
-//	themeText.setFont(new FontUIResource("Arial", 30, 30));
-//	themeText.setLineWrap(true);
-//	themeText.setEditable(false);
-//
-//	darkMode.setText("Dark Mode");
-//	lightMode.setText("Light Mode");
-//	contrastMode.setText("Contrast Mode");
-//	
-//	darkMode.setSize(new Dimension(200,100));
-//	
-//	darkMode.setPreferredSize(new Dimension(200,100));
-//	lightMode.setPreferredSize(new Dimension(200,100));
-//	contrastMode.setPreferredSize(new Dimension(200,100));
-//	darkMode.setFont(new FontUIResource("Arial", 30, 30));
-//	lightMode.setFont(new FontUIResource("Arial", 30, 30));
-//	contrastMode.setFont(new FontUIResource("Arial", 30, 30));
-//
-//	themeSelector.setLayout(new BorderLayout());
-//	
-//	themeSelector.add(themeText, BorderLayout.NORTH);
-//	themeSelector.add(darkMode, BorderLayout.EAST);
-//	themeSelector.add(lightMode, BorderLayout.WEST);
-//	themeSelector.add(contrastMode, BorderLayout.SOUTH);
-//	themeSelector.pack();
-//	themeSelector.setLocationRelativeTo(null);
-//
-//	darkMode.addActionListener(new ActionListener() {
-//		
-//		@Override
-//		public void actionPerformed(ActionEvent evt) {
-//			// TODO Auto-generated method stub
-//			try {
-//				UIManager.setLookAndFeel(new FlatDarkLaf());
-//			} catch (Exception e) {
-//				System.err.print("Could not set the selected dark theme.");
-//			}
-//		
-//			FlatLaf.updateUI();
-//			
-//			darkMode.setPreferredSize(new Dimension(200,100));
-//			lightMode.setPreferredSize(new Dimension(200,100));
-//			contrastMode.setPreferredSize(new Dimension(200,100));
-//			
-//			darkMode.setFont(new FontUIResource("Arial", 30, 30));
-//			lightMode.setFont(new FontUIResource("Arial", 30, 30));
-//			contrastMode.setFont(new FontUIResource("Arial", 30, 30));
-//			
-//			ThemeManager tm = new ThemeManager();
-//			tm.setThemeFontSize();
-//
-//		}
-//	});
-//	
-//	lightMode.addActionListener(new ActionListener() {
-//		
-//		@Override
-//		public void actionPerformed(ActionEvent evt) {
-//			// TODO Auto-generated method stub
-//			try {
-//				UIManager.setLookAndFeel(new FlatLightFlatIJTheme());
-//			} catch (Exception e) {
-//				System.err.print("Could not set the selected dark theme.");
-//			}
-//			
-//			FlatLaf.updateUI();
-//
-//		}
-//	});
-//	
-//	contrastMode.addActionListener(new ActionListener() {
-//		
-//		@Override
-//		public void actionPerformed(ActionEvent evt) {
-//			// TODO Auto-generated method stub
-//			try {
-//				UIManager.setLookAndFeel(new FlatHighContrastIJTheme());
-//			} catch (Exception e) {
-//				System.err.print("Could not set the selected dark theme.");
-//			}
-//			
-//			FlatLaf.updateUI();
-//
-//		}
-//	});
 	
 	
     Logger log = Logger.getLogger("heat");
@@ -210,6 +115,7 @@ public static void main(String[] args) {
         wm.getConsoleWindow().getFocus();
     }
     wm.setVisible();
+    
 	ThemeManager tm = new ThemeManager();
 	tm.popUpTheme();
    }
