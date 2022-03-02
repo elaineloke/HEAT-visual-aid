@@ -139,8 +139,8 @@ public class ActionManager {
 
   // help actions
   private ShowHelpAction showHelpAction = new ShowHelpAction("Help",
-      Resources.getIcon("help16"), "Display help", new Integer(KeyEvent.VK_L),
-      KeyStroke.getKeyStroke(KeyEvent.VK_H, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+      Resources.getIcon("help16"), "Display help", new Integer(KeyEvent.VK_U),
+      KeyStroke.getKeyStroke(KeyEvent.VK_U, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
   private ShowAboutAction showAboutAction = new ShowAboutAction("About",
       Resources.getIcon("info16"), "Display about information", null, null);
   
@@ -733,6 +733,8 @@ public class ActionManager {
       try {
           int menuFontsize = Integer.parseInt(menuFontSize);
           mainMenu.setFontSize(menuFontsize);
+          OptionsWindow ow = wm.getOptionsWindow();
+          ow.setFontSize(menuFontsize);
           sm.setSetting(Settings.MENU_FONT_SIZE, menuFontSize);
         } catch (NumberFormatException nfe) {
           log.warning("[ActionManager] - Failed to parse " +

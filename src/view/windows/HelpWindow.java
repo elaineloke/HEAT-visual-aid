@@ -239,6 +239,7 @@ public class HelpWindow {
     top.add(new DefaultMutableTreeNode(new BookInfo("Checking Properties","properties")));
     top.add(new DefaultMutableTreeNode(new BookInfo("Haskell Interpreter","interpreter")));
     top.add(new DefaultMutableTreeNode(new BookInfo("Limitations ... bugs","problems")));
+    top.add(new DefaultMutableTreeNode(new BookInfo("Hotkeys","hotkeys")));
   }
 
   public void show() {

@@ -29,18 +29,27 @@ import view.dialogs.FileDialogs;
 
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.MenuElement;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
@@ -60,9 +69,12 @@ public class OptionsWindow {
   private JComboBox jcbMenuFontSize;
   private JComboBox jcbCodeFontSize;
   private JDialog dialog;
+  private JTabbedPane tabOptions = new JTabbedPane();
 
   private SettingsManager sm = SettingsManager.getInstance();
   private WindowManager wm = WindowManager.getInstance();
+  // a constant that is set to make differences between font size to enable emphasis.
+  private static final int FONT_SIZE_DIFF = 4;
   
   
   /**
@@ -96,6 +108,7 @@ public class OptionsWindow {
     panelInterpreter.add(jTextFieldInterpreterPath);
     panelInterpreter.add(new JSeparator(SwingConstants.HORIZONTAL));
     // panelInterpreter.add(new JLabel("")); // some vertical space
+    
     JPanel panelOptionsInfo = new JPanel();
     panelOptionsInfo.add(new JLabel("Command line options for the Haskell interpreter:"));
     panelInterpreter.add(panelOptionsInfo);
@@ -159,7 +172,6 @@ public class OptionsWindow {
     panelFontSizes.add(interpreterFontSize);
     
     // combine panels on tabbed pane
-    JTabbedPane tabOptions = new JTabbedPane();
     tabOptions.addTab("Haskell Interpreter", panelInterpreter);
     tabOptions.addTab("Property Tests", panelTest);
     tabOptions.addTab("Font Sizes", panelFontSizes);
@@ -182,9 +194,47 @@ public class OptionsWindow {
     panelOptions = new JPanel(new BorderLayout());
     panelOptions.add(tabOptions,BorderLayout.CENTER);
     panelOptions.add(panelButtons,BorderLayout.PAGE_END);
+    
+
+    
+    /* Use font size from settings if it exists */
+    String fontSize = sm.getSetting(Settings.MENU_FONT_SIZE);
+    if ((fontSize != null) && (fontSize != "")) setFontSize(Integer.parseInt(fontSize));
+
   }
 
- 
+  
+  /**
+   * Update font size used in option window
+   * 
+   * @param ptSize desired font size
+   */
+  public void setFontSize(int ptSize) {
+	    //test merge
+	    Component[] tabs = tabOptions.getComponents();
+	    tabOptions.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize-FONT_SIZE_DIFF));
+//	    tabOptions.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize));
+	    ArrayList<Component> allComp = new ArrayList<>();
+	    for(int index=0; index<tabs.length; index++) {
+	    	//change tabs' font size
+	    	// get 3 tabbed JPanel
+	    	JPanel tempPanel = (JPanel) tabs[index];
+	    	Component[] subComps = tempPanel.getComponents();
+	    	for(Component subComp: subComps) {
+    			if(subComp instanceof JTextField) {
+    				JTextField tempTextField = (JTextField) subComp;
+    				tempTextField.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize-FONT_SIZE_DIFF));
+    			}
+	    		if(subComp instanceof JPanel) {
+	    			JPanel subSubPanel = (JPanel) subComp;
+	    			Collections.addAll(allComp,subSubPanel.getComponents());
+	    		}
+	    	}
+	    }
+	    for(Component comp: allComp) {
+	    	comp.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize));
+	    }
+  }
 
   /**
    * Displays the options window
@@ -195,8 +245,8 @@ public class OptionsWindow {
     dialog = new JDialog(wm.getMainScreenFrame(), "Options");
     dialog.setModal(true);
     dialog.getContentPane().add(panelOptions);      //(jTabbedPane1);
-    dialog.setMinimumSize(new Dimension(500,350));
-    dialog.setSize(600, 400);
+    dialog.setMinimumSize(new Dimension(800,450));
+    dialog.setSize(1000, 500);
     dialog.setLocationRelativeTo(wm.getMainScreenFrame());
     dialog.setVisible(true);
   }

@@ -139,7 +139,7 @@ public class MainMenu{
 
     /* Run Menu */
     jMenuRun.setText("Run");
-    jMenuRun.setMnemonic('r');
+    jMenuRun.setMnemonic('n');
     jMenuItemCompile.setAction(am.getCompileAction());
     jMenuItemCompile.setText("Load & Compile");
     //jMenuItemCompile.setMnemonic('c');
