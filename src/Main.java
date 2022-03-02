@@ -94,10 +94,18 @@ public static void main(String[] args) {
     wm.setLookAndFeel();
     wm.createGUI();
     
+//	ThemeManager tm = new ThemeManager();
+//	tm.popUpTheme();
+//
+//    AudioManager audioManager = new AudioManager();
+//    audioManager.createAudioPopUP();
 
+    ThemeManager tm = new ThemeManager();
 
-    if (sm.isNewSettingsFile())
-      wm.showWizardWindow();
+    
+    if (sm.isNewSettingsFile()) {
+        tm.closeThemeWindow();
+    }
       // will also start interpreter process
     else {
       // FileManager fm = FileManager.getInstance();
@@ -122,12 +130,10 @@ public static void main(String[] args) {
     }
     wm.setVisible();
 
-	ThemeManager tm = new ThemeManager();
 	tm.popUpTheme();
-
+    
     AudioManager audioManager = new AudioManager();
     audioManager.createAudioPopUP();
-    
    }
 		
 }

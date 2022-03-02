@@ -9,6 +9,8 @@ import java.awt.Frame;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -247,6 +249,18 @@ public class ThemeManager {
 		});
 	}
 		
+		public void closeThemeWindow() {
+			themeSelector.addWindowListener(new WindowAdapter() {
+
+				@Override
+				public void windowClosed(WindowEvent e) {
+					super.windowClosed(e);
+					wm.showWizardWindow();
+				}
+			});
+		}
+		
+		
 		/*
 		 * Sets the font size of the texts in the pop up window
 		 */
@@ -262,4 +276,5 @@ public class ThemeManager {
 			lightMode.setFont(new FontUIResource("Arial", 30, 30));
 			contrastMode.setFont(new FontUIResource("Arial", 30, 30));
 		}
+
 }
