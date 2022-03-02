@@ -13,6 +13,7 @@
 
 //import com.incors.plaf.alloy.AlloyLookAndFeel;
 
+import managers.AudioManager;
 import managers.FileManager;
 import managers.InterpreterManager;
 import managers.SettingsManager;
@@ -32,12 +33,15 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
 
+import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.io.File;
@@ -53,6 +57,7 @@ public class Main {
    * Used to run HEAT
    * @param args
    */
+	static boolean continuePlaying = true;
 	
 public static void main(String[] args) {
     Logger log = Logger.getLogger("heat");
@@ -101,85 +106,8 @@ public static void main(String[] args) {
     }
     wm.setVisible();
 
-    
-    //try adding method here ;)
-    final JFrame option = new JFrame();
-    JButton yes = new JButton();
-    JButton no = new JButton();
-    JTextArea text = new JTextArea(5,40);
-    
-    final JFrame info = new JFrame();
-    JTextArea commands = new JTextArea(0,0);
-    
-    JRootPane rootPane = option.getRootPane(); 
-
-    commands.setText("Ctrl + Q - quit \nCtrl + O - open a file \n"
-    		+ "Escape - closes window \nCtrl + P - print editor content or interpreter console \n"
-    		+ "Ctrl + D - Opens HEAT options \nCtrl + Z - undo \nCtrl + Y - redo \n"
-    		+ "Ctrl + F - find and replace in page \nCtrl + X - cut \nCtrl + C - copy \n"
-    		+ "Ctrl + V - paste \nCtrl + L - load compile programme, load program into interpreter and compile it \n"
-    		+ "Ctrl + I - interrupt interpreter \nCtrl + T - check properties \n"
-    		+ "Ctrl + H - display help \nFor the console window: \nE - sends evaluation to interpreter \n"
-    		+ "S - save path and continue");
-    commands.setEditable(false);
-    info.add(commands);
-    info.pack();
-    
-    text.setText("Do you require keyboard shortcuts to be read aloud? If yes press enter");
-    text.setLineWrap(true);
-    text.setEditable(false);
-    yes.setText("Yes");
-    no.setText("No");
-    option.setLayout(new BorderLayout());
-    option.add(text, BorderLayout.NORTH);
-    option.add(yes, BorderLayout.WEST);
-    option.add(no, BorderLayout.EAST);
-    option.pack();
-    option.setVisible(true);
-    
-    try {
-    	String x = new java.io.File("src").getAbsolutePath();
-    	FileInputStream mp3_file = new FileInputStream(x + "\\audio" + "\\openingVoice.mp3");
-    	Player mp3 = new Player(mp3_file);
-    	System.out.println(x);
-    	mp3.play();}
-    catch(Exception e) {
-    	System.out.println(e);
-    }
-    
-    rootPane.setDefaultButton(yes);
-    
-    yes.addActionListener(new ActionListener() {
-    	
-    	@Override
-        public void actionPerformed(ActionEvent e) {
-            option.dispose();
-            try {
-            	String x = new java.io.File("src").getAbsolutePath();
-            	FileInputStream mp3_file = new FileInputStream(x + "\\audio" + "\\commandsv.mp3");
-            	Player mp3 = new Player(mp3_file);
-            	System.out.println(x);
-            	mp3.play();
-            	Thread.currentThread();
-				Thread.sleep(10000);
-            	info.dispose();}
-            catch(Exception e2) {
-            	System.out.println(e2);
-            }           
-        }
-    });
-    
-    no.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            info.setVisible(true);
-        	option.dispose();
-        }
-    });
-    
-
-    //end of added method
-    
-   }
+    AudioManager audioManager = new AudioManager();
+    audioManager.createAudioPopUP();
+}
 }
   
