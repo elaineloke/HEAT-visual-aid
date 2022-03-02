@@ -722,7 +722,10 @@ public class ActionManager {
 
       /* Perform any font updates */
       try {
-        int outputFontsize = Integer.parseInt(outputFontSize);
+    	  int outputFontsize;
+    	  if(outputFontSize != null && outputFontSize != "") outputFontsize = Integer.parseInt(outputFontSize);
+    	  else outputFontsize = 14;
+        
         wm.getConsoleWindow().setFontSize(outputFontsize);
         sm.setSetting(Settings.OUTPUT_FONT_SIZE, outputFontSize);
       } catch (NumberFormatException nfe) {
@@ -733,8 +736,8 @@ public class ActionManager {
       try {
           int menuFontsize = Integer.parseInt(menuFontSize);
           mainMenu.setFontSize(menuFontsize);
-          OptionsWindow ow = wm.getOptionsWindow();
-          ow.setFontSize(menuFontsize);
+          wm.getOptionsWindow().setFontSize(menuFontsize);
+          wm.getTreeWindow().setFontSize(menuFontsize);
           sm.setSetting(Settings.MENU_FONT_SIZE, menuFontSize);
         } catch (NumberFormatException nfe) {
           log.warning("[ActionManager] - Failed to parse " +

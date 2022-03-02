@@ -162,7 +162,7 @@ public class OptionsWindow {
     editorFontSize.add(new JLabel("Editor font size: "));
     editorFontSize.add(jcbCodeFontSize);
     JPanel menuFontSize = new JPanel();
-    menuFontSize.add(new JLabel("Menu and Setting font size: "));
+    menuFontSize.add(new JLabel("Menu and Tree Window font size: "));
     menuFontSize.add(jcbMenuFontSize);
     JPanel interpreterFontSize = new JPanel();
     interpreterFontSize.add(new JLabel("Interpreter font size:"));
@@ -213,25 +213,29 @@ public class OptionsWindow {
 	    //test merge
 	    Component[] tabs = tabOptions.getComponents();
 	    tabOptions.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize-FONT_SIZE_DIFF));
-//	    tabOptions.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize));
-	    ArrayList<Component> allComp = new ArrayList<>();
+	    
+	    ArrayList<Component> subSubComp = new ArrayList<>();
 	    for(int index=0; index<tabs.length; index++) {
 	    	//change tabs' font size
 	    	// get 3 tabbed JPanel
 	    	JPanel tempPanel = (JPanel) tabs[index];
+	    	// get all sub-components inside 3 JPanels
 	    	Component[] subComps = tempPanel.getComponents();
 	    	for(Component subComp: subComps) {
     			if(subComp instanceof JTextField) {
+    				// change font setting of JTextFields under 3 tabbed JPanel at this level
     				JTextField tempTextField = (JTextField) subComp;
     				tempTextField.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize-FONT_SIZE_DIFF));
     			}
 	    		if(subComp instanceof JPanel) {
 	    			JPanel subSubPanel = (JPanel) subComp;
-	    			Collections.addAll(allComp,subSubPanel.getComponents());
+	    			// get all sub-sub-components inside subcomponents 
+	    			Collections.addAll(subSubComp,subSubPanel.getComponents());
 	    		}
 	    	}
 	    }
-	    for(Component comp: allComp) {
+	    //change font setting of any components inside sub-components
+	    for(Component comp: subSubComp) {
 	    	comp.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, ptSize));
 	    }
   }
