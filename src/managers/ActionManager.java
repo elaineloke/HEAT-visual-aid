@@ -23,6 +23,7 @@ import utils.Settings;
 import utils.InterpreterParser;
 
 import view.dialogs.SystemDialogs;
+import view.toolbars.MainMenu;
 import view.windows.*;
 
 import java.awt.event.ActionEvent;
@@ -35,8 +36,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
+
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatGradiantoNatureGreenIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatHiberbeeDarkIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatVuesionIJTheme;
+
+//import com.sun.tools.javac.Main;
+
+
 
 /**
  * The manager Class responsible for all GUI action commands
@@ -138,10 +154,35 @@ public class ActionManager {
 
   // help actions
   private ShowHelpAction showHelpAction = new ShowHelpAction("Help",
-      Resources.getIcon("help16"), "Display help", new Integer(KeyEvent.VK_L),
-      KeyStroke.getKeyStroke(KeyEvent.VK_H, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+      Resources.getIcon("help16"), "Display help", new Integer(KeyEvent.VK_U),
+      KeyStroke.getKeyStroke(KeyEvent.VK_U, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
   private ShowAboutAction showAboutAction = new ShowAboutAction("About",
       Resources.getIcon("info16"), "Display about information", null, null);
+  
+  
+//theme selector
+ private SelectLightTheme selectLightTheme = new SelectLightTheme("Light Theme",
+	      Resources.getIcon("changetheme"), "Light theme", new Integer(KeyEvent.VK_W),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_W, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectGreenTheme selectGreenTheme = new SelectGreenTheme("Nature Green Theme",
+	      Resources.getIcon("changetheme"), "Nature green theme", new Integer(KeyEvent.VK_G),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_G, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectDarkTheme selectDarkTheme = new SelectDarkTheme("Dark Theme",
+	      Resources.getIcon("changetheme"), "Dark theme", new Integer(KeyEvent.VK_K),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_K, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectDarkOrangeTheme selectDarkOrangeTheme = new SelectDarkOrangeTheme("Dark Orange Theme",
+	      Resources.getIcon("changetheme"), "Dark orange theme", new Integer(KeyEvent.VK_M),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_M, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectHiberbeeTheme selectHiberbeeTheme = new SelectHiberbeeTheme("Deep Dark Theme",
+	      Resources.getIcon("changetheme"), "Hiberbee dark theme", new Integer(KeyEvent.VK_B),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_B, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectVuesionTheme selectVuesionTheme = new SelectVuesionTheme("Hyper Dark Theme",
+	      Resources.getIcon("changetheme"), "Vuesion theme", new Integer(KeyEvent.VK_N),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_N, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+ private SelectContrastTheme selectContrastTheme = new SelectContrastTheme("High Contrast Theme",
+	      Resources.getIcon("changetheme"), "High contrast theme", new Integer(KeyEvent.VK_R),
+	      KeyStroke.getKeyStroke(KeyEvent.VK_R, java.awt.Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+
   
 
   private RefreshTreeAction refreshTreeAction = new RefreshTreeAction("", Resources.getIcon("reload16"),
@@ -350,6 +391,35 @@ public class ActionManager {
   public ActionManager.GoToRecentConsoleHistory getGoToRecentConsoleHistory(){
 	  return goToRecentConsoleHistory;
   }
+  
+  public ActionManager.SelectDarkTheme selectDarkTheme(){
+	  return selectDarkTheme;
+  }
+  
+  public ActionManager.SelectDarkOrangeTheme selectDarkOrangeTheme(){
+	  return selectDarkOrangeTheme;
+  }
+  
+  public ActionManager.SelectLightTheme selectLightTheme(){
+	  return selectLightTheme;
+  }
+  
+  public ActionManager.SelectHiberbeeTheme selectHiberbeeTheme(){
+	  return selectHiberbeeTheme;
+  }
+  
+  public ActionManager.SelectGreenTheme selectGreenTheme(){
+	  return selectGreenTheme;
+  }
+  
+  public ActionManager.SelectVuesionTheme selectVuesionTheme(){
+	  return selectVuesionTheme;
+  }
+  
+  public ActionManager.SelectContrastTheme selectContrastTheme(){
+	  return selectContrastTheme;
+  }
+  
 
     /* The Action SubClasses Follow  */
   /*
@@ -695,12 +765,14 @@ public class ActionManager {
 
     public void actionPerformed(ActionEvent e) {
       WindowManager wm = WindowManager.getInstance();
+      MainMenu mainMenu = wm.getMainMenu();
       boolean essentialChange = false;
 
       String interpreterPath = wm.getOptionsWindow().getInterpreterPath();
       String interpreterOpts = wm.getOptionsWindow().getInterpreterOpts();
       String libraryPath = wm.getOptionsWindow().getLibraryPath();
       String outputFontSize = wm.getOptionsWindow().getOuputFontSize();
+      String menuFontSize = wm.getOptionsWindow().getMenuFontSize();
       String codeFontSize = wm.getOptionsWindow().getCodeFontSize();
       SettingsManager sm = SettingsManager.getInstance();
       InterpreterManager im = InterpreterManager.getInstance();
@@ -719,13 +791,29 @@ public class ActionManager {
 
       /* Perform any font updates */
       try {
-        int outputFontsize = Integer.parseInt(outputFontSize);
+    	  int outputFontsize;
+    	  if(outputFontSize != null && outputFontSize != "") outputFontsize = Integer.parseInt(outputFontSize);
+    	  else outputFontsize = 14;
+        
         wm.getConsoleWindow().setFontSize(outputFontsize);
         sm.setSetting(Settings.OUTPUT_FONT_SIZE, outputFontSize);
       } catch (NumberFormatException nfe) {
         log.warning("[ActionManager] - Failed to parse " +
           Settings.OUTPUT_FONT_SIZE + " setting from options window");
       }
+      
+      try {
+          int menuFontsize = Integer.parseInt(menuFontSize);
+          mainMenu.setFontSize(menuFontsize);
+          wm.getOptionsWindow().setFontSize(menuFontsize);
+          wm.getTreeWindow().setFontSize(menuFontsize);
+          wm.getHelpWindow().setFontSize(menuFontsize);
+          wm.getAboutWindow().setFontSize(menuFontsize);
+          sm.setSetting(Settings.MENU_FONT_SIZE, menuFontSize);
+        } catch (NumberFormatException nfe) {
+          log.warning("[ActionManager] - Failed to parse " +
+            Settings.MENU_FONT_SIZE + " setting from options window");
+        }
 
       try {
         int codeFontsize = Integer.parseInt(codeFontSize);
@@ -1144,7 +1232,146 @@ public class ActionManager {
       
     }
     
+    /**
+     * Apply the selected theme when the related button is clicked
+     * @author el345
+     *
+     */
     
+    //select dark theme
+    public class SelectDarkTheme extends AbstractAction {
+    	public SelectDarkTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(ActionEvent evt) {				
+			
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectDarkTheme");
+			
+		}
+
+    }
     
+    //select dark orange theme
+    public class SelectDarkOrangeTheme extends AbstractAction {
+    	public SelectDarkOrangeTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(ActionEvent evt) {				
+			
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectDarkOrangeTheme");
+
+		}
+
+    }
+    
+    //select light theme
+    public class SelectLightTheme extends AbstractAction {
+    	public SelectLightTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(ActionEvent evt) {				
+			
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectLightTheme");;	
+
+		}
+
+    }
+    
+    //select hiberbee dark theme
+    public class SelectHiberbeeTheme extends AbstractAction {
+    	public SelectHiberbeeTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(ActionEvent evt) {				
+			
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectHiberbeeTheme");	
+
+		}
+
+    }
+    
+    //select gradianto nature green theme
+    public class SelectGreenTheme extends AbstractAction {
+    	public SelectGreenTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(ActionEvent evt) {				
+			
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectGreenTheme");
+			
+		}
+
+    }
+    
+    //select vuesion theme
+    public class SelectVuesionTheme extends AbstractAction {
+    	public SelectVuesionTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(ActionEvent evt) {				
+			
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectVuesionTheme");
+
+		}
+
+    }
+    
+    //select high contrast theme
+    public class SelectContrastTheme extends AbstractAction {
+    
+
+		public SelectContrastTheme(String text, ImageIcon icon, String desc, Integer mnemonic, KeyStroke accelerator) {
+    		super(text,icon);
+    		 putValue(SHORT_DESCRIPTION, desc);
+             putValue(MNEMONIC_KEY, mnemonic);
+             putValue(ACCELERATOR_KEY, accelerator);
+    	}
+
+		@Override
+		public void actionPerformed(ActionEvent evt) {		
+			
+			ThemeManager tm = new ThemeManager();
+			tm.changeTheme("SelectContrastTheme");
+			 
+		}
+
+    }
+
     
 } /* end ActionManger */
