@@ -41,6 +41,11 @@ public class Settings {
    * The font size used in the output window
    */
   public static final String OUTPUT_FONT_SIZE = "OUTPUT_FONT_SIZE";
+  
+  /**
+   * The font size used in the JMenuBar
+   */
+  public static final String MENU_FONT_SIZE = "MENU_FONT_SIZE";
 
   /**
    * The font size used in the display window
