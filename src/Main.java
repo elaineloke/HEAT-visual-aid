@@ -13,12 +13,14 @@
 
 //import com.incors.plaf.alloy.AlloyLookAndFeel;
 
+
 import managers.ActionManager;
+import managers.AudioManager;
+>>>>>>> src/Main.java
 import managers.FileManager;
 import managers.InterpreterManager;
 import managers.SettingsManager;
 import managers.ThemeManager;
-//import managers.ThemeManager;
 import managers.WindowManager;
 import view.toolbars.MainMenu;
 import managers.UndoManager;
@@ -32,7 +34,7 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkOrangeIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
-import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+
 
 import javax.print.attribute.standard.Media;
 import javax.sound.sampled.AudioInputStream;
@@ -41,16 +43,25 @@ import javax.sound.sampled.Clip;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 
-//import javazoom.jl.player.Player;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import java.util.logging.Level;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 /**
  * Main HEAT class
@@ -61,105 +72,11 @@ public class Main {
    * Used to run HEAT
    * @param args
    */
+	static boolean continuePlaying = true;
+	
 public static void main(String[] args) {
 	
-	//popup window for theme selector
 	
-//	final JFrame themeSelector = new JFrame();
-//	final JButton darkMode = new JButton();
-//	final JButton lightMode = new JButton();
-//	final JButton contrastMode = new JButton();
-//	
-//	final JTextArea themeText = new JTextArea();
-//	final JTextArea themeText2 = new JTextArea();
-//
-//	themeText.setText("         Select your theme");
-//
-//
-//	themeText.setFont(new FontUIResource("Arial", 30, 30));
-//	themeText.setLineWrap(true);
-//	themeText.setEditable(false);
-//
-//	darkMode.setText("Dark Mode");
-//	lightMode.setText("Light Mode");
-//	contrastMode.setText("Contrast Mode");
-//	
-//	darkMode.setSize(new Dimension(200,100));
-//	
-//	darkMode.setPreferredSize(new Dimension(200,100));
-//	lightMode.setPreferredSize(new Dimension(200,100));
-//	contrastMode.setPreferredSize(new Dimension(200,100));
-//	darkMode.setFont(new FontUIResource("Arial", 30, 30));
-//	lightMode.setFont(new FontUIResource("Arial", 30, 30));
-//	contrastMode.setFont(new FontUIResource("Arial", 30, 30));
-//
-//	themeSelector.setLayout(new BorderLayout());
-//	
-//	themeSelector.add(themeText, BorderLayout.NORTH);
-//	themeSelector.add(darkMode, BorderLayout.EAST);
-//	themeSelector.add(lightMode, BorderLayout.WEST);
-//	themeSelector.add(contrastMode, BorderLayout.SOUTH);
-//	themeSelector.pack();
-//	themeSelector.setLocationRelativeTo(null);
-//
-//	darkMode.addActionListener(new ActionListener() {
-//		
-//		@Override
-//		public void actionPerformed(ActionEvent evt) {
-//			// TODO Auto-generated method stub
-//			try {
-//				UIManager.setLookAndFeel(new FlatDarkLaf());
-//			} catch (Exception e) {
-//				System.err.print("Could not set the selected dark theme.");
-//			}
-//		
-//			FlatLaf.updateUI();
-//			
-//			darkMode.setPreferredSize(new Dimension(200,100));
-//			lightMode.setPreferredSize(new Dimension(200,100));
-//			contrastMode.setPreferredSize(new Dimension(200,100));
-//			
-//			darkMode.setFont(new FontUIResource("Arial", 30, 30));
-//			lightMode.setFont(new FontUIResource("Arial", 30, 30));
-//			contrastMode.setFont(new FontUIResource("Arial", 30, 30));
-//			
-//			ThemeManager tm = new ThemeManager();
-//			tm.setThemeFontSize();
-//
-//		}
-//	});
-//	
-//	lightMode.addActionListener(new ActionListener() {
-//		
-//		@Override
-//		public void actionPerformed(ActionEvent evt) {
-//			// TODO Auto-generated method stub
-//			try {
-//				UIManager.setLookAndFeel(new FlatLightFlatIJTheme());
-//			} catch (Exception e) {
-//				System.err.print("Could not set the selected dark theme.");
-//			}
-//			
-//			FlatLaf.updateUI();
-//
-//		}
-//	});
-//	
-//	contrastMode.addActionListener(new ActionListener() {
-//		
-//		@Override
-//		public void actionPerformed(ActionEvent evt) {
-//			// TODO Auto-generated method stub
-//			try {
-//				UIManager.setLookAndFeel(new FlatHighContrastIJTheme());
-//			} catch (Exception e) {
-//				System.err.print("Could not set the selected dark theme.");
-//			}
-//			
-//			FlatLaf.updateUI();
-//
-//		}
-//	});
 	
 	
     Logger log = Logger.getLogger("heat");
@@ -196,7 +113,7 @@ public static void main(String[] args) {
       im.startProcess(false);
     }
     
-    
+
     if (args.length > 0) {
     	wm.openFile(new java.io.File(args[0]));
         wm.showAll();
@@ -210,10 +127,14 @@ public static void main(String[] args) {
         wm.getConsoleWindow().getFocus();
     }
     wm.setVisible();
+
 	ThemeManager tm = new ThemeManager();
 	tm.popUpTheme();
-   }
-		
+   
+    AudioManager audioManager = new AudioManager();
+    audioManager.createAudioPopUP();
+}
+
 }
 	
 
