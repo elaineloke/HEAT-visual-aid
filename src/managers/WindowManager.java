@@ -404,7 +404,7 @@ public class WindowManager {
       // jSplitTree.add(jSplitMain, JSplitPane.RIGHT);
      
       /* add menu and toolbar */
-      mainScreenFrame.setJMenuBar(mainMenu.getToolBar());
+      mainScreenFrame.setJMenuBar(mainMenu.getMenuBar());
       mainScreenFrame.getContentPane().add(toolbar.getToolBar(),
         BorderLayout.NORTH);
 

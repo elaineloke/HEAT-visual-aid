@@ -231,7 +231,7 @@ public class MainMenu {
    *
    * @return the JMenuBar itself
    */
-  public JMenuBar getToolBar() {
+  public JMenuBar getMenuBar() {
     return jMenuBar;
   }
 
