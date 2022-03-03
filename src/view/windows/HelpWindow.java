@@ -203,6 +203,33 @@ public class HelpWindow {
   }
   
   /**
+   * Getters for unit test class
+   * 
+   * @return a constant that add spaces between each node
+   */
+  public int getTreeRowHeight() {
+	  return TREE_ROW_HEIGHT_DIFF;
+  }
+  
+  /**
+   * Getters for unit test class
+   * 
+   * @return JPanel2
+   */
+  public JPanel getJPanel2() {
+	  return jPanel2;
+  }
+  
+  /**
+   * Getters for unit test class
+   * 
+   * @return JTree tree
+   */
+  public JTree getTree() {
+	  return tree;
+  }
+  
+  /**
    * Update help window font size
    * 
    * @param ptSize desired font size
