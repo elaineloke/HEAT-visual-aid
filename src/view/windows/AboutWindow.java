@@ -107,6 +107,14 @@ public class AboutWindow {
     if ((fontSize != null) && (fontSize != "")) setFontSize(Integer.parseInt(fontSize));
   }
 
+
+  /**
+   * Getters for unit test test class
+   */
+  public JPanel getJpMain() {
+	  return jpMain;
+  }
+  
   /**
    * Update AboutWindow font size
    * 
