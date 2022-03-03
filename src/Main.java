@@ -39,6 +39,8 @@ import javax.print.attribute.standard.Media;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 
@@ -56,6 +58,7 @@ import java.awt.event.MouseListener;
 import java.util.logging.Level;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 
@@ -70,7 +73,7 @@ public class Main {
    */
 	static boolean continuePlaying = true;
 	
-public static void main(String[] args) {
+public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 	
 	
     Logger log = Logger.getLogger("heat");
@@ -94,11 +97,10 @@ public static void main(String[] args) {
     wm.setLookAndFeel();
     wm.createGUI();
     
-    ThemeManager tm = new ThemeManager();
 
     if (sm.isNewSettingsFile())
-    	tm.closeThemeWindow();
-      // will also start interpreter process
+    	wm.showWizardWindow();      
+    // will also start interpreter process
     else {
       // FileManager fm = FileManager.getInstance();
       // fm.saveTemporary();
@@ -122,10 +124,12 @@ public static void main(String[] args) {
     }
     wm.setVisible();
         
+    ThemeManager tm = new ThemeManager();
 	tm.popUpTheme();
 
     AudioManager audioManager = new AudioManager();
     audioManager.createAudioPopUP();
+   
     
    }
 		

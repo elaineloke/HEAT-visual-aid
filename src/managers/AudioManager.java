@@ -4,7 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,7 +15,13 @@ import javax.swing.JRootPane;
 import javax.swing.JTextArea;
 import javax.swing.plaf.FontUIResource;
 
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.AudioDevice;
+import javazoom.jl.player.FactoryRegistry;
 import javazoom.jl.player.Player;
+import javazoom.jl.player.advanced.AdvancedPlayer;
+
+
 
 public class AudioManager {
 	
@@ -22,6 +31,7 @@ public class AudioManager {
 	private JButton no;
 	private JTextArea text;
 	private JTextArea commands;
+	private AdvancedPlayer player;
 	
 	public void createAudioPopUP() {
 
@@ -76,7 +86,7 @@ public class AudioManager {
     option.setVisible(true);
     
     
-    //Audio asking if audio shortcuts are necessary
+   // Audio asking if audio shortcuts are necessary
     try {
     	String x = new java.io.File("src").getAbsolutePath();
     	FileInputStream mp3_file = new FileInputStream(x + "\\audio" + "\\openingVoice.mp3");
@@ -86,6 +96,10 @@ public class AudioManager {
     catch(Exception e) {
     	System.out.println(e);
     }
+    
+
+
+
     
     //Causing yes button to activate when enter is pressed, and the audio short cuts mp3 to activate
     rootPane.setDefaultButton(yes);
@@ -120,5 +134,7 @@ public class AudioManager {
 	}
 
 //end of audio method
-
+	
 }
+
+

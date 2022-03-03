@@ -249,16 +249,7 @@ public class ThemeManager {
 		});
 	}
 		
-		public void closeThemeWindow() {
-			themeSelector.addWindowListener(new WindowAdapter() {
 
-				@Override
-				public void windowClosed(WindowEvent e) {
-					super.windowClosed(e);
-					wm.showWizardWindow();
-				}
-			});
-		}
 		
 		/*
 		 * Sets the font size of the texts in the pop up window
