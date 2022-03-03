@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="X:/home/SoftEngProjWeek/G4 - testFlow3/jl1.0.jar"/>
 	<classpathentry kind="lib" path="X:/home/SoftEngProjWeek/G4 - testFlow3/flatlaf/flatlaf-2.0.2.jar"/>
 	<classpathentry kind="lib" path="X:/home/SoftEngProjWeek/G4 - testFlow3/flatlaf/flatlaf-intellij-themes-2.0.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
