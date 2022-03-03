@@ -97,7 +97,7 @@ public static void main(String[] args) {
     ThemeManager tm = new ThemeManager();
 
     if (sm.isNewSettingsFile())
-    	tm.closeThemeWindow();
+    	wm.showWizardWindow();
       // will also start interpreter process
     else {
       // FileManager fm = FileManager.getInstance();
