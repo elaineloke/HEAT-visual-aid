@@ -202,6 +202,17 @@ public class OptionsWindow {
     
   }
 
+  public int getFontSizeDiff() {
+	  return FONT_SIZE_DIFF;
+  }
+  
+  public JTabbedPane getTabsOption() {
+	  return tabOptions;
+  }
+  
+  public JPanel getPanelButtons() {
+	  return panelButtons;
+  }
   
   /**
    * Update font size used in option window
