@@ -12,7 +12,7 @@
  */
 
 
-import managers.AudioManager;
+//import managers.AudioManager;
 
 import managers.ActionManager;
 import managers.FileManager;
@@ -124,8 +124,8 @@ public static void main(String[] args) {
         
 	tm.popUpTheme();
 
-    AudioManager audioManager = new AudioManager();
-    audioManager.createAudioPopUP();
+//    AudioManager audioManager = new AudioManager();
+//    audioManager.createAudioPopUP();
     
    }
 		

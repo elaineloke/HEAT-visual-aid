@@ -102,7 +102,7 @@ public class HelpWindow {
     iconBack = Resources.getIcon("back16");
     iconForward = Resources.getIcon("forward16");
 
-    jPanel0.setSize(new Dimension(670, 400));
+    jPanel0.setSize(new Dimension(800, 450));
 
     DefaultMutableTreeNode top = new DefaultMutableTreeNode("HEAT Help");
     createNodes(top);
@@ -302,7 +302,7 @@ public class HelpWindow {
 
   public void show() {
     frame.getContentPane().add(jPanel0);
-    frame.setSize(800, 435);
+    frame.setSize(1000, 650);
     frame.setLocationRelativeTo(WindowManager.getInstance().getMainScreenFrame());
     frame.setVisible(true);
   }
