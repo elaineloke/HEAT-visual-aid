@@ -15,3 +15,7 @@ Red - Green Colour- Blindness (Deuteranomaly, Protanomaly, Deuteranopia and Prot
 Blue - yellow Colour-Blindness (Tritanopia and Tritanomaly)
 Monochromacy (black and white) - complete colour blindness
 This information was useful in determining which themes to utilise with said users we intended to target. We also looked into the most common types of colour blindness and other types of sensitivities, such as brightness and contrast. 
+
+ADDITIONAL INFORMATION 
+--------------------------------------------------------------------------
+For more information, please visit our [Wiki page](https://git.cs.kent.ac.uk/comp8860/G4/-/wikis/home). 
