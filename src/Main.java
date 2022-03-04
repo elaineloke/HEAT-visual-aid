@@ -1,6 +1,6 @@
 /** 
  *
- * Copyright (c) 2005 University of Kent
+  * Copyright (c) 2005 University of Kent
  * Computing Laboratory, Canterbury, Kent, CT2 7NP, U.K
  *
  * This software is the confidential and proprietary information of the

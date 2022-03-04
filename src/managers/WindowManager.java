@@ -34,6 +34,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.intellijthemes.FlatHighContrastIJTheme;
 
 import javax.swing.JOptionPane;
 import java.awt.Dimension;
@@ -707,7 +708,7 @@ public class WindowManager {
   
   public static void setLookAndFeel() {
 	    try {
-	         UIManager.setLookAndFeel(new FlatDarculaLaf());
+	         UIManager.setLookAndFeel(new FlatHighContrastIJTheme());
 	    } catch (Exception e) {
 	      log.warning("[WindowManager] Unable to set look and feel");
 	    }
