@@ -224,7 +224,8 @@ public class ThemeManager {
 		themeSelector.setLocationRelativeTo(null);
 		
 		themeSelector.setVisible(true);
-	
+		themeSelector.setAlwaysOnTop(true);
+  	
 		darkMode.addActionListener(new ActionListener() {
 			
 			@Override
