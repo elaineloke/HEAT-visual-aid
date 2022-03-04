@@ -220,11 +220,8 @@ public class ThemeManager {
 		themeSelector.add(contrastMode, BorderLayout.CENTER);
 		themeSelector.add(apply, BorderLayout.SOUTH);
 
-		themeSelector.pack();
-		themeSelector.setLocationRelativeTo(null);
-		
+		themeSelector.pack();		
 		themeSelector.setVisible(true);
-		themeSelector.setAlwaysOnTop(true);
   	
 		darkMode.addActionListener(new ActionListener() {
 			
