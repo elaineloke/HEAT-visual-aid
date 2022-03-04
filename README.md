@@ -18,4 +18,4 @@ This information was useful in determining which themes to utilise with said use
 
 ADDITIONAL INFORMATION 
 --------------------------------------------------------------------------
-For more information, please visit our [Wiki page](https://git.cs.kent.ac.uk/comp8860/G4/-/wikis/home). 
+For more information, please visit our [Wiki page](https://git.cs.kent.ac.uk/comp8860/G4/-/wikis/Index). 
