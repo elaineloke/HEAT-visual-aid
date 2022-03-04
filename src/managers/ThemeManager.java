@@ -1,6 +1,7 @@
 package managers;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Dialog;
@@ -20,6 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -56,6 +58,7 @@ public class ThemeManager {
 	private JButton darkMode;
 	private JButton lightMode;
 	private JButton contrastMode;
+	private JButton apply;
 	private JFrame themeSelector;
 	private JTextPane themeText;	
 	
@@ -164,6 +167,7 @@ public class ThemeManager {
 		darkMode = new JButton();
 		lightMode = new JButton();
 		contrastMode = new JButton();
+		apply = new JButton();
 		themeText = new JTextPane();
 	
 		themeText.setText("Select your theme");
@@ -180,6 +184,7 @@ public class ThemeManager {
 		darkMode.setText("Dark Mode");
 		lightMode.setText("Light Mode");
 		contrastMode.setText("Contrast Mode");
+		apply.setText("Apply");
 		
 		darkMode.setPreferredSize(new Dimension(200,100));
 		lightMode.setPreferredSize(new Dimension(200,100));
@@ -187,13 +192,34 @@ public class ThemeManager {
 		darkMode.setFont(new FontUIResource("Arial", 30, 30));
 		lightMode.setFont(new FontUIResource("Arial", 30, 30));
 		contrastMode.setFont(new FontUIResource("Arial", 30, 30));
-	
+		
+		apply.setPreferredSize(new Dimension(200,100));
+		apply.setFont(new FontUIResource("Arial", 30, 30));
+
+		
+		lightMode.setBackground(Color.white);
+		lightMode.setOpaque(true);
+		lightMode.setForeground(Color.black);
+		lightMode.setBorder(new LineBorder(Color.gray));
+		
+		darkMode.setBackground(Color.darkGray);
+		darkMode.setOpaque(true);
+		darkMode.setForeground(Color.lightGray);
+		darkMode.setBorder(new LineBorder(Color.gray));
+		
+		contrastMode.setBackground(Color.black);
+		contrastMode.setOpaque(true);
+		contrastMode.setForeground(Color.white);
+		contrastMode.setBorder(new LineBorder(Color.cyan));
+		
 		themeSelector.setLayout(new BorderLayout());
 		
 		themeSelector.add(themeText, BorderLayout.NORTH);
 		themeSelector.add(darkMode, BorderLayout.EAST);
 		themeSelector.add(lightMode, BorderLayout.WEST);
-		themeSelector.add(contrastMode, BorderLayout.SOUTH);
+		themeSelector.add(contrastMode, BorderLayout.CENTER);
+		themeSelector.add(apply, BorderLayout.SOUTH);
+
 		themeSelector.pack();
 		themeSelector.setLocationRelativeTo(null);
 		
@@ -203,7 +229,7 @@ public class ThemeManager {
 			
 			@Override
 			public void actionPerformed(ActionEvent evt) {
-				// TODO Auto-generated method stub
+
 				try {
 					UIManager.setLookAndFeel(new FlatDarkLaf());
 				} catch (Exception e) {
@@ -220,7 +246,7 @@ public class ThemeManager {
 			
 			@Override
 			public void actionPerformed(ActionEvent evt) {
-				// TODO Auto-generated method stub
+				
 				try {
 					UIManager.setLookAndFeel(new FlatLightFlatIJTheme());
 				} catch (Exception e) {
@@ -236,7 +262,7 @@ public class ThemeManager {
 			
 			@Override
 			public void actionPerformed(ActionEvent evt) {
-				// TODO Auto-generated method stub
+				
 				try {
 					UIManager.setLookAndFeel(new FlatHighContrastIJTheme());
 				} catch (Exception e) {
@@ -245,6 +271,15 @@ public class ThemeManager {
 				
 				FlatLaf.updateUI();
 				setThemeFontSize();
+			}
+		});
+		
+		apply.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent evt) {
+				
+				themeSelector.dispose();
 			}
 		});
 	}
@@ -259,11 +294,19 @@ public class ThemeManager {
 			themeText.setFont(new FontUIResource("Arial", 30, 30));
 			darkMode.setPreferredSize(new Dimension(200,100));
 			lightMode.setPreferredSize(new Dimension(200,100));
-			contrastMode.setPreferredSize(new Dimension(200,100));		
+			contrastMode.setPreferredSize(new Dimension(200,100));
+			apply.setPreferredSize(new Dimension(200,100));		
+
 			darkMode.setFont(new FontUIResource("Arial", 30, 30));
 			lightMode.setFont(new FontUIResource("Arial", 30, 30));
 			contrastMode.setFont(new FontUIResource("Arial", 30, 30));
+			apply.setFont(new FontUIResource("Arial", 30, 30));
+
 		}
+		
+//		public void darkTheme() {
+//			
+//		}
 		
 
 }
