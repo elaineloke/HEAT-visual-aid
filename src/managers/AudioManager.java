@@ -78,10 +78,10 @@ public class AudioManager {
     
     //Audio asking if audio shortcuts are necessary
     try {
-    	String x = new java.io.File("src").getAbsolutePath();
-    	FileInputStream mp3_file = new FileInputStream(x + "\\audio" + "\\openingVoice.mp3");
+    	String audioPath = new java.io.File("src").getAbsolutePath();
+    	FileInputStream mp3_file = new FileInputStream(audioPath + "\\audio" + "\\openingVoice.mp3");
     	Player mp3 = new Player(mp3_file);
-    	System.out.println(x);
+    	System.out.println(audioPath);
     	mp3.play();}
     catch(Exception e) {
     	System.out.println(e);
