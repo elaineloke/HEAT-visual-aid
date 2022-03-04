@@ -1,4 +1,5 @@
 HEAT Software with Accessibility Functions for Visually Impaired Users
+---------------------------------------------------------------------
 
 This project takes HEAT software source code and implement more accessibility features to assist users with visual acuity and colour blindness to navigate through and use the software with more ease. 
 
