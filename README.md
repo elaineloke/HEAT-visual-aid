@@ -19,3 +19,12 @@ This information was useful in determining which themes to utilise with said use
 ADDITIONAL INFORMATION 
 --------------------------------------------------------------------------
 For more information, please visit our [Wiki page](https://git.cs.kent.ac.uk/comp8860/G4/-/wikis/Index). 
+
+CONTRIBUTION 
+--------------------------------------------------------------------------
+Project developed with group members as part of University of Kent MSc Computer Science COMP8860 Sofware Engineering module. 
+Group members: 
+Elaine Loke – implementation of theme selector using Flatlaf open source 
+James Wong 
+Hannah Cooper 
+Joanna Oyegbile 
