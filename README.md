@@ -22,5 +22,6 @@ For more information, please visit our [Wiki page](https://git.cs.kent.ac.uk/com
 
 CONTRIBUTION 
 --------------------------------------------------------------------------
-Project developed with group members as part of University of Kent MSc Computer Science COMP8860 Sofware Engineering module. 
+Project developed with group members as part of University of Kent MSc Computer Science COMP8860 Sofware Engineering module.<br>
+
 Personal contribution: implementation of theme selector using Flatlaf open source
